@@ -3,7 +3,10 @@ package Vista;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.sql.Connection;
 import javax.swing.BorderFactory;
+import Controlador.ConexionDB;
+import javax.swing.JOptionPane;
 
 public class Inicio extends javax.swing.JFrame {
 
@@ -144,9 +147,6 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_almacenActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -177,6 +177,12 @@ public class Inicio extends javax.swing.JFrame {
                 new Inicio().setVisible(true);
             }
         });
+        
+        Connection miConexion=ConexionDB.GetConnection();
+        
+        if(miConexion!=null){
+            JOptionPane.showMessageDialog(null, "Conexión Realizada Correctamente");
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton almacen;
