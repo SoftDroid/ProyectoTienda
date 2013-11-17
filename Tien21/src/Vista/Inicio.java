@@ -6,15 +6,31 @@ import java.awt.Toolkit;
 import java.sql.Connection;
 import javax.swing.BorderFactory;
 import Controlador.ConexionDB;
+import static java.awt.image.ImageObserver.WIDTH;
 import javax.swing.JOptionPane;
 
 public class Inicio extends javax.swing.JFrame {
+    private static Connection miConexion;
 
     public Inicio() {
         initComponents();
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         jPanel1.setBorder(BorderFactory.createLineBorder(Color.black));
         jPanel2.setBorder(BorderFactory.createLineBorder(Color.black));
+        
+        
+        Login login=new Login();
+        boolean usuarioCorrecto=false;
+        while(!usuarioCorrecto){
+            if(JOptionPane.showConfirmDialog(this,login , "Introduce Usuario y Contraseña", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)==JOptionPane.OK_OPTION){
+                if(login.comprobarUsuario()){
+                    JOptionPane.showMessageDialog(this, "Bienvenido "+login.getUsuario(), "Saludo", WIDTH);
+                    usuarioCorrecto=true;
+                }else{
+                    JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }     
+        }
     }
 
     
@@ -178,11 +194,12 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         
-        Connection miConexion=ConexionDB.GetConnection();
+        /*prueba conexion
+        miConexion=ConexionDB.conexion();
         
         if(miConexion!=null){
             JOptionPane.showMessageDialog(null, "Conexión Realizada Correctamente");
-        }
+        }*/
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton almacen;
