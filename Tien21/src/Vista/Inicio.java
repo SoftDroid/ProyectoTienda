@@ -16,13 +16,13 @@ public class Inicio extends javax.swing.JFrame {
 
     public Inicio() {
         initComponents();
-        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());//Para Maximizar la ventana
         jPanelMenu.setBorder(BorderFactory.createLineBorder(Color.black));
-        jPanelfondo.setBorder(BorderFactory.createLineBorder(Color.black));
+        jPanelVista.setBorder(BorderFactory.createLineBorder(Color.black));
         jPanelVista.setOpaque(false);
-        inicializarMenuBar();
+        inicializarMenuBar();//Inicializamos la barra de menu
 
-        /*Login login=new Login();
+        Login login=new Login();
         boolean usuarioCorrecto=false;
         while(!usuarioCorrecto){
             if(JOptionPane.showConfirmDialog(this,login , "Introduce Usuario y Contraseña", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)==JOptionPane.OK_OPTION){
@@ -35,7 +35,7 @@ public class Inicio extends javax.swing.JFrame {
             }else{
                 System.exit(0);
             }    
-        }*/
+        }
     }
     
     public void inicializarMenuBar(){
@@ -192,14 +192,14 @@ public class Inicio extends javax.swing.JFrame {
         jPanelMenuLayout.setHorizontalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMenuLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(30, 30, 30)
                 .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                     .addComponent(almacen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ofertas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(estadistica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ventas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(25, 25, 25))
+                .addGap(30, 30, 30))
         );
         jPanelMenuLayout.setVerticalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +213,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(ofertas, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                 .addGap(40, 40, 40)
-                .addComponent(estadistica, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                .addComponent(estadistica, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                 .addGap(50, 50, 50))
         );
 
@@ -221,7 +221,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanelVista.setLayout(jPanelVistaLayout);
         jPanelVistaLayout.setHorizontalGroup(
             jPanelVistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 631, Short.MAX_VALUE)
+            .addGap(0, 710, Short.MAX_VALUE)
         );
         jPanelVistaLayout.setVerticalGroup(
             jPanelVistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
