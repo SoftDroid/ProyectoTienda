@@ -136,15 +136,16 @@ public class Inicio extends javax.swing.JFrame {
         Estadistica.setLayout(EstadisticaLayout);
         EstadisticaLayout.setHorizontalGroup(
             EstadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 869, Short.MAX_VALUE)
+            .addGap(0, 882, Short.MAX_VALUE)
         );
         EstadisticaLayout.setVerticalGroup(
             EstadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 548, Short.MAX_VALUE)
+            .addGap(0, 542, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage((new ImageIcon("Desert.jpg").getImage()));
+        setUndecorated(true);
 
         jPanelfondo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanelfondo.setOpaque(false);
