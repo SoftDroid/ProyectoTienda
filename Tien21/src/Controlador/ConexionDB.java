@@ -16,7 +16,7 @@ public class ConexionDB {
         conexion=null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            String servidor="jdbc:mysql://localhost/taskmanager";
+            String servidor="jdbc:mysql://localhost/tien21";
             String usuarioDB="root";
             String passwordDB="";
             conexion=(Connection)DriverManager.getConnection(servidor,usuarioDB,passwordDB);
@@ -38,27 +38,4 @@ public class ConexionDB {
             return conexion;
         }
     }
-    
-    
-    public ResultSet consult(String sql) throws SQLException{
-        ResultSet rset = null;
-        st= conexion.createStatement();
-        rset = st.executeQuery(sql);
-        return rset;
-    }
-    
-    public void executeSql(String sql) throws SQLException{
-        st = conexion.createStatement();
-        st.executeUpdate(sql);
-	st.close();
-    }
-
-    
-    public void close() throws SQLException{
-        if(st!=null){
-            st.close();
-            st=null;
-        }
-    }
-    
 }

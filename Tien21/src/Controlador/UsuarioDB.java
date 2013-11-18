@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 
 public class UsuarioDB {
-    private final String USER="nick";
-    private final String PASS="password";
+    private final String USER="User";
+    private final String PASS="Pass";
     private final String USUARIO="usuario";
     
  
