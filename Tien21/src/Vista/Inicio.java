@@ -1,18 +1,22 @@
 
 package Vista;
 
+import Controlador.BotonesInicio;
 import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.BorderFactory;
 import java.awt.Graphics;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class Inicio extends javax.swing.JFrame {
+    private JPanel jPanelInicio;
 
     public Inicio() {
         initComponents();
@@ -21,21 +25,17 @@ public class Inicio extends javax.swing.JFrame {
         jPanelVista.setBorder(BorderFactory.createLineBorder(Color.black));
         jPanelVista.setOpaque(false);
         inicializarMenuBar();//Inicializamos la barra de menu
+        this.jPanelInicio=this.jPanelVista;
+        //llamarLogin();
+        inicializarActionCommand();
 
-        Login login=new Login();
-        boolean usuarioCorrecto=false;
-        while(!usuarioCorrecto){
-            if(JOptionPane.showConfirmDialog(this,login , "Introduce Usuario y Contraseña", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)==JOptionPane.OK_OPTION){
-                if(login.comprobarUsuario()){
-                    JOptionPane.showMessageDialog(this, "Bienvenido "+login.getUsuario(), "Saludo", WIDTH);
-                    usuarioCorrecto=true;
-                }else{
-                    JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }else{
-                System.exit(0);
-            }    
-        }
+        
+        inicio.addActionListener(new BotonesInicio(jPanelVista,jPanelInicio));
+        ventas.addActionListener(new BotonesInicio(jPanelVista,jPanelVenta));
+        pedidos.addActionListener(new BotonesInicio(jPanelVista,jPanelPedido));
+        almacen.addActionListener(new BotonesInicio(jPanelVista,jPanelAlmacen));
+        ofertas.addActionListener(new BotonesInicio(jPanelVista,jPanelOferta));
+        estadistica.addActionListener(new BotonesInicio(jPanelVista,jPanelEstadistica));
     }
     
     public void inicializarMenuBar(){
@@ -62,10 +62,18 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelVenta = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanelPedido = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jPanelAlmacen = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaAlmacen = new javax.swing.JTable();
+        textFieldBuscar = new javax.swing.JTextField();
+        botonBuscar = new javax.swing.JButton();
         jPanelOferta = new javax.swing.JPanel();
-        Estadistica = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanelEstadistica = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jPanelfondo = new javax.swing.JPanel(){
             @Override
             public void paint(Graphics g){
@@ -89,59 +97,134 @@ public class Inicio extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
+        jPanelVenta.setOpaque(false);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setText("VENTAS");
+
         javax.swing.GroupLayout jPanelVentaLayout = new javax.swing.GroupLayout(jPanelVenta);
         jPanelVenta.setLayout(jPanelVentaLayout);
         jPanelVentaLayout.setHorizontalGroup(
             jPanelVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 736, Short.MAX_VALUE)
+            .addGroup(jPanelVentaLayout.createSequentialGroup()
+                .addGap(263, 263, 263)
+                .addComponent(jLabel1)
+                .addContainerGap(329, Short.MAX_VALUE))
         );
         jPanelVentaLayout.setVerticalGroup(
             jPanelVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
+            .addGroup(jPanelVentaLayout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jLabel1)
+                .addContainerGap(419, Short.MAX_VALUE))
         );
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 204, 102));
+        jLabel2.setText("PEDIDOS");
 
         javax.swing.GroupLayout jPanelPedidoLayout = new javax.swing.GroupLayout(jPanelPedido);
         jPanelPedido.setLayout(jPanelPedidoLayout);
         jPanelPedidoLayout.setHorizontalGroup(
             jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 860, Short.MAX_VALUE)
+            .addGroup(jPanelPedidoLayout.createSequentialGroup()
+                .addGap(313, 313, 313)
+                .addComponent(jLabel2)
+                .addContainerGap(255, Short.MAX_VALUE))
         );
         jPanelPedidoLayout.setVerticalGroup(
             jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 543, Short.MAX_VALUE)
+            .addGroup(jPanelPedidoLayout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(jLabel2)
+                .addContainerGap(355, Short.MAX_VALUE))
         );
+
+        tablaAlmacen.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaAlmacen);
+
+        textFieldBuscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        botonBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        botonBuscar.setText("Buscar");
 
         javax.swing.GroupLayout jPanelAlmacenLayout = new javax.swing.GroupLayout(jPanelAlmacen);
         jPanelAlmacen.setLayout(jPanelAlmacenLayout);
         jPanelAlmacenLayout.setHorizontalGroup(
             jPanelAlmacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 873, Short.MAX_VALUE)
+            .addGroup(jPanelAlmacenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAlmacenLayout.createSequentialGroup()
+                .addGap(215, 215, 215)
+                .addComponent(botonBuscar)
+                .addGap(94, 94, 94)
+                .addComponent(textFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         jPanelAlmacenLayout.setVerticalGroup(
             jPanelAlmacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 548, Short.MAX_VALUE)
+            .addGroup(jPanelAlmacenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(jPanelAlmacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonBuscar))
+                .addGap(29, 29, 29))
         );
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 204, 153));
+        jLabel3.setText("OFERTAS");
 
         javax.swing.GroupLayout jPanelOfertaLayout = new javax.swing.GroupLayout(jPanelOferta);
         jPanelOferta.setLayout(jPanelOfertaLayout);
         jPanelOfertaLayout.setHorizontalGroup(
             jPanelOfertaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 870, Short.MAX_VALUE)
+            .addGroup(jPanelOfertaLayout.createSequentialGroup()
+                .addGap(378, 378, 378)
+                .addComponent(jLabel3)
+                .addContainerGap(325, Short.MAX_VALUE))
         );
         jPanelOfertaLayout.setVerticalGroup(
             jPanelOfertaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 547, Short.MAX_VALUE)
+            .addGroup(jPanelOfertaLayout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(jLabel3)
+                .addContainerGap(343, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout EstadisticaLayout = new javax.swing.GroupLayout(Estadistica);
-        Estadistica.setLayout(EstadisticaLayout);
-        EstadisticaLayout.setHorizontalGroup(
-            EstadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 882, Short.MAX_VALUE)
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 204, 0));
+        jLabel4.setText("ESTADISTICA");
+
+        javax.swing.GroupLayout jPanelEstadisticaLayout = new javax.swing.GroupLayout(jPanelEstadistica);
+        jPanelEstadistica.setLayout(jPanelEstadisticaLayout);
+        jPanelEstadisticaLayout.setHorizontalGroup(
+            jPanelEstadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEstadisticaLayout.createSequentialGroup()
+                .addGap(399, 399, 399)
+                .addComponent(jLabel4)
+                .addContainerGap(236, Short.MAX_VALUE))
         );
-        EstadisticaLayout.setVerticalGroup(
-            EstadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 542, Short.MAX_VALUE)
+        jPanelEstadisticaLayout.setVerticalGroup(
+            jPanelEstadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEstadisticaLayout.createSequentialGroup()
+                .addGap(148, 148, 148)
+                .addComponent(jLabel4)
+                .addContainerGap(350, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -223,9 +306,8 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(almacen, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ofertas, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estadistica, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(ventas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(inicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
         jPanelMenuLayout.setVerticalGroup(
@@ -245,6 +327,8 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(estadistica, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(30, Short.MAX_VALUE))
         );
+
+        inicio.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout jPanelVistaLayout = new javax.swing.GroupLayout(jPanelVista);
         jPanelVista.setLayout(jPanelVistaLayout);
@@ -335,22 +419,56 @@ public class Inicio extends javax.swing.JFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Estadistica;
     private javax.swing.JButton almacen;
+    private javax.swing.JButton botonBuscar;
     private javax.swing.JButton estadistica;
     private javax.swing.JButton inicio;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanelAlmacen;
+    private javax.swing.JPanel jPanelEstadistica;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelOferta;
     private javax.swing.JPanel jPanelPedido;
     private javax.swing.JPanel jPanelVenta;
     private javax.swing.JPanel jPanelVista;
     private javax.swing.JPanel jPanelfondo;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton ofertas;
     private javax.swing.JButton pedidos;
+    private javax.swing.JTable tablaAlmacen;
+    private javax.swing.JTextField textFieldBuscar;
     private javax.swing.JButton ventas;
     // End of variables declaration//GEN-END:variables
+
+    private void llamarLogin() throws HeadlessException {
+        Login login=new Login();
+        boolean usuarioCorrecto=false;
+        while(!usuarioCorrecto){
+            if(JOptionPane.showConfirmDialog(this,login , "Introduce Usuario y Contraseña", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)==JOptionPane.OK_OPTION){
+                if(login.comprobarUsuario()){
+                    JOptionPane.showMessageDialog(this, "Bienvenido "+login.getUsuario(), "Saludo", WIDTH);
+                    usuarioCorrecto=true;
+                }else{
+                    JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                System.exit(0);
+            }    
+        }
+    }
+
+    private void inicializarActionCommand() {
+        inicio.setActionCommand("inicio");
+        ventas.setActionCommand("ventas");
+        pedidos.setActionCommand("pedidos");
+        almacen.setActionCommand("almacen");
+        ofertas.setActionCommand("ofertas");
+        estadistica.setActionCommand("estadistica");
+    }
 }
