@@ -1,6 +1,6 @@
 
 package Vista;
-import Controlador.*;
+import Modelo.UsuarioDB;
 import java.sql.Connection;
 
 

@@ -16,11 +16,11 @@ public class Inicio extends javax.swing.JFrame {
 
     public Inicio() {
         initComponents();
-        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());//Para Maximizar la ventana
         jPanelMenu.setBorder(BorderFactory.createLineBorder(Color.black));
-        jPanelfondo.setBorder(BorderFactory.createLineBorder(Color.black));
+        jPanelVista.setBorder(BorderFactory.createLineBorder(Color.black));
         jPanelVista.setOpaque(false);
-        inicializarMenuBar();
+        inicializarMenuBar();//Inicializamos la barra de menu
 
         /*Login login=new Login();
         boolean usuarioCorrecto=false;
@@ -78,6 +78,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         };
         jPanelMenu = new javax.swing.JPanel();
+        inicio = new javax.swing.JButton();
         ventas = new javax.swing.JButton();
         pedidos = new javax.swing.JButton();
         almacen = new javax.swing.JButton();
@@ -152,18 +153,35 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanelMenu.setBackground(new java.awt.Color(0, 32, 71));
 
+        inicio.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        inicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/InicioA.png"))); // NOI18N
+        inicio.setBorder(null);
+        inicio.setBorderPainted(false);
+        inicio.setContentAreaFilled(false);
+        inicio.setPreferredSize(new java.awt.Dimension(50, 20));
+        inicio.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/InicioB.png"))); // NOI18N
+        inicio.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/InicioC.png"))); // NOI18N
+
         ventas.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/ventas.png"))); // NOI18N
-        ventas.setBorder(null);
+        ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/ventasA.png"))); // NOI18N
         ventas.setBorderPainted(false);
         ventas.setContentAreaFilled(false);
         ventas.setPreferredSize(new java.awt.Dimension(50, 20));
-        ventas.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/ventas1.png"))); // NOI18N
-        ventas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/ventas2.png"))); // NOI18N
+        ventas.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/VentasB.png"))); // NOI18N
+        ventas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/VentasC.png"))); // NOI18N
+        ventas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ventasActionPerformed(evt);
+            }
+        });
 
         pedidos.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        pedidos.setText("Pedidos");
+        pedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/PedidoA.png"))); // NOI18N
+        pedidos.setBorderPainted(false);
+        pedidos.setContentAreaFilled(false);
         pedidos.setPreferredSize(new java.awt.Dimension(50, 20));
+        pedidos.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/PedidoB.png"))); // NOI18N
+        pedidos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/PedidoC.png"))); // NOI18N
         pedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pedidosActionPerformed(evt);
@@ -171,57 +189,68 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         almacen.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        almacen.setText("Almacen");
+        almacen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/AlmacenA.png"))); // NOI18N
+        almacen.setBorderPainted(false);
+        almacen.setContentAreaFilled(false);
         almacen.setPreferredSize(new java.awt.Dimension(50, 20));
-        almacen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                almacenActionPerformed(evt);
-            }
-        });
+        almacen.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/AlmacenB.png"))); // NOI18N
+        almacen.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/AlmacenC.png"))); // NOI18N
 
         ofertas.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        ofertas.setText("Ofertas");
+        ofertas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/OfertasA.png"))); // NOI18N
+        ofertas.setBorderPainted(false);
+        ofertas.setContentAreaFilled(false);
         ofertas.setPreferredSize(new java.awt.Dimension(50, 20));
+        ofertas.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/OfertasB.png"))); // NOI18N
+        ofertas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/OfertasC.png"))); // NOI18N
 
         estadistica.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        estadistica.setText("Estadisticas");
+        estadistica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/EstadisticasA.png"))); // NOI18N
+        estadistica.setBorderPainted(false);
+        estadistica.setContentAreaFilled(false);
         estadistica.setPreferredSize(new java.awt.Dimension(50, 20));
+        estadistica.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/EstadisticasB.png"))); // NOI18N
+        estadistica.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/EstadisticasC.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelMenuLayout = new javax.swing.GroupLayout(jPanelMenu);
         jPanelMenu.setLayout(jPanelMenuLayout);
         jPanelMenuLayout.setHorizontalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMenuLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(30, 30, 30)
                 .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                    .addComponent(almacen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ofertas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(estadistica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ventas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(25, 25, 25))
+                    .addComponent(pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(almacen, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ofertas, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(estadistica, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(ventas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(inicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30))
         );
         jPanelMenuLayout.setVerticalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMenuLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(ventas, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                .addGap(40, 40, 40)
-                .addComponent(pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                .addGap(39, 39, 39)
-                .addComponent(almacen, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                .addGap(39, 39, 39)
-                .addComponent(ofertas, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                .addGap(40, 40, 40)
-                .addComponent(estadistica, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                .addGap(50, 50, 50))
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(almacen, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(ofertas, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(estadistica, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelVistaLayout = new javax.swing.GroupLayout(jPanelVista);
         jPanelVista.setLayout(jPanelVistaLayout);
         jPanelVistaLayout.setHorizontalGroup(
             jPanelVistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 631, Short.MAX_VALUE)
+            .addGap(0, 398, Short.MAX_VALUE)
         );
         jPanelVistaLayout.setVerticalGroup(
             jPanelVistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,13 +294,13 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void almacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_almacenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_almacenActionPerformed
-
     private void pedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pedidosActionPerformed
+
+    private void ventasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ventasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ventasActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -309,6 +338,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel Estadistica;
     private javax.swing.JButton almacen;
     private javax.swing.JButton estadistica;
+    private javax.swing.JButton inicio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
