@@ -1,4 +1,3 @@
-
 package Modelo;
 
 import java.sql.Connection;
@@ -6,12 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 public class UsuarioDB {
     private final String USER="User";
     private final String PASS="Pass";
     private final String USUARIO="usuario";
-    
  
     public boolean authenticate(String user,String password){
         boolean authenticate=false;

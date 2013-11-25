@@ -4,42 +4,87 @@ package Controlador;
 import Vista.Inicio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
 
 public class BotonesInicio implements ActionListener {
-    private JPanel panel1;
-    private JPanel panel2;
-    public BotonesInicio(JPanel jPanel1, JPanel jPanel2) {
-        panel1=jPanel1;
-        panel2=jPanel2;
+    private JPanel panelInicio;
+    private JPanel panelVenta;
+    private JPanel panelPedido;
+    private JPanel panelAlmacen;
+    private JPanel panelOferta;
+    private JPanel panelEstadistica;
+    private JFrame frame;
+
+    public BotonesInicio(JPanel jPanelInicio, JPanel jPanelVenta, JPanel jPanelPedido, JPanel jPanelAlmacen, JPanel jPanelOferta, JPanel jPanelEstadistica, Inicio frame) {
+        this.panelInicio=jPanelInicio;
+        this.panelVenta=jPanelVenta;
+        this.panelPedido=jPanelPedido;
+        this.panelAlmacen=jPanelAlmacen;
+        this.panelOferta=jPanelOferta;
+        this.panelEstadistica=jPanelEstadistica;
+        this.frame=frame;
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        String s=e.getActionCommand();
+        String s = e.getActionCommand();
         switch (s){
             case "inicio":      
-                    panel1=panel2;
+                    this.panelInicio.setVisible(true);
+                    this.panelVenta.setVisible(false);
+                    this.panelPedido.setVisible(false);
+                    this.panelAlmacen.setVisible(false);
+                    this.panelOferta.setVisible(false);
+                    this.panelEstadistica.setVisible(false);
+                    this.panelInicio.repaint();
                     break;
-            case "ventas":
-                    panel1=panel2;
+            case "ventas":   
+                    this.panelInicio.setVisible(false);
+                    this.panelVenta.setVisible(true);
+                    this.panelPedido.setVisible(false);
+                    this.panelAlmacen.setVisible(false);
+                    this.panelOferta.setVisible(false);
+                    this.panelEstadistica.setVisible(false);
+                    this.panelInicio.repaint();
                     break;
             case "pedidos":
-                    panel1=panel2;
+                    this.panelInicio.setVisible(false);
+                    this.panelVenta.setVisible(false);
+                    this.panelPedido.setVisible(true);
+                    this.panelAlmacen.setVisible(false);
+                    this.panelOferta.setVisible(false);
+                    this.panelEstadistica.setVisible(false);
+                    this.panelInicio.repaint();
                     break;
             case "almacen":
-                    panel1=panel2;
+                    this.panelInicio.setVisible(false);
+                    this.panelVenta.setVisible(false);
+                    this.panelPedido.setVisible(false);
+                    this.panelAlmacen.setVisible(true);
+                    this.panelOferta.setVisible(false);
+                    this.panelEstadistica.setVisible(false);
+                    this.panelInicio.repaint();
                     break;
             case "ofertas":
-                    panel1=panel2;
+                    this.panelInicio.setVisible(false);
+                    this.panelVenta.setVisible(false);
+                    this.panelPedido.setVisible(false);
+                    this.panelAlmacen.setVisible(false);
+                    this.panelOferta.setVisible(true);
+                    this.panelEstadistica.setVisible(false);
+                    this.panelInicio.repaint();
                     break;
             case "estadistica":
-                    panel1=panel2;
-                    break;
-            default:
-                    panel1=panel2;
+                    this.panelInicio.setVisible(false);
+                    this.panelVenta.setVisible(false);
+                    this.panelPedido.setVisible(false);
+                    this.panelAlmacen.setVisible(false);
+                    this.panelOferta.setVisible(false);
+                    this.panelEstadistica.setVisible(true);
+                    this.panelInicio.repaint();
                     break;
         }
     }

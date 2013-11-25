@@ -1,5 +1,5 @@
-
 package Vista;
+
 import Modelo.UsuarioDB;
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.sql.Connection;
-
 
 public class Login extends javax.swing.JPanel {
 

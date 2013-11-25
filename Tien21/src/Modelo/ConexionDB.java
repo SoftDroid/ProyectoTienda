@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 
 public class ConexionDB {
     private static Connection conexion;
-    private Statement st;
 
     public static Connection conexion(){
         conexion=null;
