@@ -45,7 +45,17 @@ public class Inicio extends javax.swing.JFrame {
         this.listProductosAlmacen.add(new Object []{1234,"Camiseta corta",12.90,14.90,"Verano","Rojo","M","","",11,"Sin oferta",false});
         ModeloTablaProductos modeloAlmacen=new ModeloTablaProductos(listProductosAlmacen);
         this.tablaAlmacen.setModel(modeloAlmacen);
-
+        
+        ModeloTablaPedidos modeloPedido=new ModeloTablaPedidos(new ArrayList());
+        this.tablaPedido.setModel(modeloPedido);
+        
+        ModeloTablaPedidos modeloModificarPedido=new ModeloTablaPedidos(new ArrayList());
+        this.tablaModificarPedido.setModel(modeloModificarPedido);
+        
+        ModeloTablaEliminarPedido modeloEliminarPedido=new ModeloTablaEliminarPedido(new ArrayList());
+        this.tablaEliminarPedido.setModel(modeloEliminarPedido);
+        
+        
     }
     
     public void inicializarMenuBar(){
@@ -101,16 +111,28 @@ public class Inicio extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanelNuevoPedido = new javax.swing.JPanel();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tablaPedido = new javax.swing.JTable();
+        botonAnadirElementoPedido = new javax.swing.JButton();
+        botonBorrarElementoPedido = new javax.swing.JButton();
+        botonRealizarPedido = new javax.swing.JButton();
         jPanelModificarPedido = new javax.swing.JPanel();
-        jPanelEliminarPedido = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tablaModificarPedido = new javax.swing.JTable();
+        comboPedidoModificacion = new javax.swing.JComboBox();
+        botonGuardarModificacion = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jPanelMostrar = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tablaEliminarPedido = new javax.swing.JTable();
+        botonEliminarPedido = new javax.swing.JButton();
+        botonLlamarModificacion = new javax.swing.JButton();
         jPanelAlmacen = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAlmacen = new javax.swing.JTable();
-        textFieldBuscar = new javax.swing.JTextField();
-        botonBuscar = new javax.swing.JButton();
+        botonBuscarAlmacen = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        BotonAnadirAlmacen = new javax.swing.JButton();
         jPanelOferta = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanelEstadistica = new javax.swing.JPanel();
@@ -308,60 +330,160 @@ public class Inicio extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 204, 102));
         jLabel2.setText("PEDIDOS");
 
+        tablaPedido.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tablaPedido);
+
+        botonAnadirElementoPedido.setText("Añadir");
+        botonAnadirElementoPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAnadirElementoPedidoActionPerformed(evt);
+            }
+        });
+
+        botonBorrarElementoPedido.setText("Borrar");
+
+        botonRealizarPedido.setText("Realizar Pedido");
+
         javax.swing.GroupLayout jPanelNuevoPedidoLayout = new javax.swing.GroupLayout(jPanelNuevoPedido);
         jPanelNuevoPedido.setLayout(jPanelNuevoPedidoLayout);
         jPanelNuevoPedidoLayout.setHorizontalGroup(
             jPanelNuevoPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelNuevoPedidoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(404, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92)
+                .addGroup(jPanelNuevoPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelNuevoPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(botonAnadirElementoPedido)
+                        .addComponent(botonBorrarElementoPedido))
+                    .addComponent(botonRealizarPedido))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
         jPanelNuevoPedidoLayout.setVerticalGroup(
             jPanelNuevoPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelNuevoPedidoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanelNuevoPedidoLayout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(botonAnadirElementoPedido)
+                .addGap(35, 35, 35)
+                .addComponent(botonBorrarElementoPedido)
+                .addGap(31, 31, 31)
+                .addComponent(botonRealizarPedido)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Nuevo", jPanelNuevoPedido);
+
+        tablaModificarPedido.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(tablaModificarPedido);
+
+        comboPedidoModificacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        botonGuardarModificacion.setText("Guardar Modificación");
+
+        jLabel7.setText("Pedido:");
 
         javax.swing.GroupLayout jPanelModificarPedidoLayout = new javax.swing.GroupLayout(jPanelModificarPedido);
         jPanelModificarPedido.setLayout(jPanelModificarPedidoLayout);
         jPanelModificarPedidoLayout.setHorizontalGroup(
             jPanelModificarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 869, Short.MAX_VALUE)
+            .addGroup(jPanelModificarPedidoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelModificarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelModificarPedidoLayout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addGroup(jPanelModificarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboPedidoModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)))
+                    .addGroup(jPanelModificarPedidoLayout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(botonGuardarModificacion)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanelModificarPedidoLayout.setVerticalGroup(
             jPanelModificarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 683, Short.MAX_VALUE)
+            .addGroup(jPanelModificarPedidoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanelModificarPedidoLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(comboPedidoModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82)
+                .addComponent(botonGuardarModificacion)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Modificar", jPanelModificarPedido);
 
-        javax.swing.GroupLayout jPanelEliminarPedidoLayout = new javax.swing.GroupLayout(jPanelEliminarPedido);
-        jPanelEliminarPedido.setLayout(jPanelEliminarPedidoLayout);
-        jPanelEliminarPedidoLayout.setHorizontalGroup(
-            jPanelEliminarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 869, Short.MAX_VALUE)
-        );
-        jPanelEliminarPedidoLayout.setVerticalGroup(
-            jPanelEliminarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 683, Short.MAX_VALUE)
-        );
+        tablaEliminarPedido.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(tablaEliminarPedido);
 
-        jTabbedPane2.addTab("Eliminar", jPanelEliminarPedido);
+        botonEliminarPedido.setText("Eliminar");
+
+        botonLlamarModificacion.setText("Modificar");
 
         javax.swing.GroupLayout jPanelMostrarLayout = new javax.swing.GroupLayout(jPanelMostrar);
         jPanelMostrar.setLayout(jPanelMostrarLayout);
         jPanelMostrarLayout.setHorizontalGroup(
             jPanelMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 869, Short.MAX_VALUE)
+            .addGroup(jPanelMostrarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addGroup(jPanelMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonEliminarPedido)
+                    .addComponent(botonLlamarModificacion))
+                .addGap(70, 70, 70))
         );
         jPanelMostrarLayout.setVerticalGroup(
             jPanelMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 683, Short.MAX_VALUE)
+            .addGroup(jPanelMostrarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanelMostrarLayout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addComponent(botonEliminarPedido)
+                .addGap(18, 18, 18)
+                .addComponent(botonLlamarModificacion)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Mostrar", jPanelMostrar);
@@ -406,14 +528,14 @@ public class Inicio extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaAlmacen);
 
-        textFieldBuscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        botonBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        botonBuscar.setText("Buscar");
+        botonBuscarAlmacen.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        botonBuscarAlmacen.setText("Buscar");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 255, 102));
         jLabel6.setText("ALMACEN");
+
+        BotonAnadirAlmacen.setText("Añadir");
 
         javax.swing.GroupLayout jPanelAlmacenLayout = new javax.swing.GroupLayout(jPanelAlmacen);
         jPanelAlmacen.setLayout(jPanelAlmacenLayout);
@@ -425,9 +547,9 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAlmacenLayout.createSequentialGroup()
                 .addGap(215, 215, 215)
-                .addComponent(botonBuscar)
-                .addGap(94, 94, 94)
-                .addComponent(textFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonBuscarAlmacen)
+                .addGap(134, 134, 134)
+                .addComponent(BotonAnadirAlmacen)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAlmacenLayout.createSequentialGroup()
                 .addContainerGap(300, Short.MAX_VALUE)
@@ -441,10 +563,10 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jPanelAlmacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBuscar))
+                    .addComponent(botonBuscarAlmacen)
+                    .addComponent(BotonAnadirAlmacen))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -597,6 +719,10 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ventasActionPerformed
 
+    private void botonAnadirElementoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnadirElementoPedidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAnadirElementoPedidoActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -630,8 +756,16 @@ public class Inicio extends javax.swing.JFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonAnadirAlmacen;
     private javax.swing.JButton almacen;
-    private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonAnadirElementoPedido;
+    private javax.swing.JButton botonBorrarElementoPedido;
+    private javax.swing.JButton botonBuscarAlmacen;
+    private javax.swing.JButton botonEliminarPedido;
+    private javax.swing.JButton botonGuardarModificacion;
+    private javax.swing.JButton botonLlamarModificacion;
+    private javax.swing.JButton botonRealizarPedido;
+    private javax.swing.JComboBox comboPedidoModificacion;
     private javax.swing.JButton estadistica;
     private javax.swing.JButton inicio;
     private javax.swing.JLabel jLabel1;
@@ -640,12 +774,12 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanelAlmacen;
     private javax.swing.JPanel jPanelDevolucionVentas;
-    private javax.swing.JPanel jPanelEliminarPedido;
     private javax.swing.JPanel jPanelEstadistica;
     private javax.swing.JPanel jPanelInicio;
     private javax.swing.JPanel jPanelMenu;
@@ -660,14 +794,18 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelfondo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton ofertas;
     private javax.swing.JButton pedidos;
     private javax.swing.JTable tablaAlmacen;
-    private javax.swing.JTextField textFieldBuscar;
+    private javax.swing.JTable tablaEliminarPedido;
+    private javax.swing.JTable tablaModificarPedido;
+    private javax.swing.JTable tablaPedido;
     private javax.swing.JButton ventas;
     // End of variables declaration//GEN-END:variables
 
