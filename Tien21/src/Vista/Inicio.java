@@ -45,8 +45,7 @@ public class Inicio extends javax.swing.JFrame {
         this.listProductosAlmacen.add(new Object []{1234,"Camiseta corta",12.90,14.90,"Verano","Rojo","M","","",11,"Sin oferta",false});
         ModeloTablaProductos modeloAlmacen=new ModeloTablaProductos(listProductosAlmacen);
         this.tablaAlmacen.setModel(modeloAlmacen);
-        
-        
+
     }
     
     public void inicializarMenuBar(){
@@ -94,21 +93,24 @@ public class Inicio extends javax.swing.JFrame {
         jPanelVenta = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jPanelVentaVentas = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelDevolucionVentas = new javax.swing.JPanel();
         jPanelPedido = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        jPanelNuevoPedido = new javax.swing.JPanel();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanelModificarPedido = new javax.swing.JPanel();
+        jPanelEliminarPedido = new javax.swing.JPanel();
+        jPanelMostrar = new javax.swing.JPanel();
         jPanelAlmacen = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAlmacen = new javax.swing.JTable();
         textFieldBuscar = new javax.swing.JTextField();
         botonBuscar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jPanelOferta = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanelEstadistica = new javax.swing.JPanel();
@@ -205,19 +207,19 @@ public class Inicio extends javax.swing.JFrame {
         jPanelMenuLayout.setVerticalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMenuLayout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(almacen, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(ofertas, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(estadistica, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         inicio.getAccessibleContext().setAccessibleDescription("");
@@ -225,6 +227,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanelVenta.setOpaque(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 255, 153));
         jLabel1.setText("VENTAS");
 
         jTabbedPane1.setToolTipText("");
@@ -242,37 +245,37 @@ public class Inicio extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelVentaVentasLayout = new javax.swing.GroupLayout(jPanelVentaVentas);
+        jPanelVentaVentas.setLayout(jPanelVentaVentasLayout);
+        jPanelVentaVentasLayout.setHorizontalGroup(
+            jPanelVentaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelVentaVentasLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(396, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanelVentaVentasLayout.setVerticalGroup(
+            jPanelVentaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelVentaVentasLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Realizar venta", jPanel1);
+        jTabbedPane1.addTab("Realizar venta", jPanelVentaVentas);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelDevolucionVentasLayout = new javax.swing.GroupLayout(jPanelDevolucionVentas);
+        jPanelDevolucionVentas.setLayout(jPanelDevolucionVentasLayout);
+        jPanelDevolucionVentasLayout.setHorizontalGroup(
+            jPanelDevolucionVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 869, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+        jPanelDevolucionVentasLayout.setVerticalGroup(
+            jPanelDevolucionVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 688, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("tab2", jPanel2);
+        jTabbedPane1.addTab("tab2", jPanelDevolucionVentas);
 
         javax.swing.GroupLayout jPanelVentaLayout = new javax.swing.GroupLayout(jPanelVenta);
         jPanelVenta.setLayout(jPanelVentaLayout);
@@ -283,7 +286,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
             .addGroup(jPanelVentaLayout.createSequentialGroup()
-                .addGap(271, 271, 271)
+                .addGap(350, 350, 350)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -299,55 +302,76 @@ public class Inicio extends javax.swing.JFrame {
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("");
 
+        jPanelPedido.setOpaque(false);
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 204, 102));
         jLabel2.setText("PEDIDOS");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelNuevoPedidoLayout = new javax.swing.GroupLayout(jPanelNuevoPedido);
+        jPanelNuevoPedido.setLayout(jPanelNuevoPedidoLayout);
+        jPanelNuevoPedidoLayout.setHorizontalGroup(
+            jPanelNuevoPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelNuevoPedidoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(404, Short.MAX_VALUE))
+        );
+        jPanelNuevoPedidoLayout.setVerticalGroup(
+            jPanelNuevoPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelNuevoPedidoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane2.addTab("Nuevo", jPanelNuevoPedido);
+
+        javax.swing.GroupLayout jPanelModificarPedidoLayout = new javax.swing.GroupLayout(jPanelModificarPedido);
+        jPanelModificarPedido.setLayout(jPanelModificarPedidoLayout);
+        jPanelModificarPedidoLayout.setHorizontalGroup(
+            jPanelModificarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 869, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 675, Short.MAX_VALUE)
+        jPanelModificarPedidoLayout.setVerticalGroup(
+            jPanelModificarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 683, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("tab1", jPanel3);
+        jTabbedPane2.addTab("Modificar", jPanelModificarPedido);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelEliminarPedidoLayout = new javax.swing.GroupLayout(jPanelEliminarPedido);
+        jPanelEliminarPedido.setLayout(jPanelEliminarPedidoLayout);
+        jPanelEliminarPedidoLayout.setHorizontalGroup(
+            jPanelEliminarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 869, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 675, Short.MAX_VALUE)
+        jPanelEliminarPedidoLayout.setVerticalGroup(
+            jPanelEliminarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 683, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("tab2", jPanel4);
+        jTabbedPane2.addTab("Eliminar", jPanelEliminarPedido);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelMostrarLayout = new javax.swing.GroupLayout(jPanelMostrar);
+        jPanelMostrar.setLayout(jPanelMostrarLayout);
+        jPanelMostrarLayout.setHorizontalGroup(
+            jPanelMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 869, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 675, Short.MAX_VALUE)
+        jPanelMostrarLayout.setVerticalGroup(
+            jPanelMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 683, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("tab3", jPanel5);
+        jTabbedPane2.addTab("Mostrar", jPanelMostrar);
 
         javax.swing.GroupLayout jPanelPedidoLayout = new javax.swing.GroupLayout(jPanelPedido);
         jPanelPedido.setLayout(jPanelPedidoLayout);
         jPanelPedidoLayout.setHorizontalGroup(
             jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPedidoLayout.createSequentialGroup()
-                .addGap(271, 271, 271)
+                .addGap(300, 300, 300)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanelPedidoLayout.createSequentialGroup()
@@ -364,6 +388,10 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(jTabbedPane2)
                 .addContainerGap())
         );
+
+        jTabbedPane2.getAccessibleContext().setAccessibleName("");
+
+        jPanelAlmacen.setOpaque(false);
 
         tablaAlmacen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -383,6 +411,10 @@ public class Inicio extends javax.swing.JFrame {
         botonBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         botonBuscar.setText("Buscar");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 255, 102));
+        jLabel6.setText("ALMACEN");
+
         javax.swing.GroupLayout jPanelAlmacenLayout = new javax.swing.GroupLayout(jPanelAlmacen);
         jPanelAlmacen.setLayout(jPanelAlmacenLayout);
         jPanelAlmacenLayout.setHorizontalGroup(
@@ -396,21 +428,29 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(botonBuscar)
                 .addGap(94, 94, 94)
                 .addComponent(textFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAlmacenLayout.createSequentialGroup()
+                .addContainerGap(300, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(300, 300, 300))
         );
         jPanelAlmacenLayout.setVerticalGroup(
             jPanelAlmacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAlmacenLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanelAlmacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonBuscar))
-                .addGap(29, 29, 29))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jPanelOferta.setOpaque(false);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 204, 153));
         jLabel3.setText("OFERTAS");
 
@@ -418,18 +458,20 @@ public class Inicio extends javax.swing.JFrame {
         jPanelOferta.setLayout(jPanelOfertaLayout);
         jPanelOfertaLayout.setHorizontalGroup(
             jPanelOfertaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelOfertaLayout.createSequentialGroup()
-                .addGap(378, 378, 378)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelOfertaLayout.createSequentialGroup()
+                .addContainerGap(324, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addGap(348, 348, 348))
         );
         jPanelOfertaLayout.setVerticalGroup(
             jPanelOfertaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelOfertaLayout.createSequentialGroup()
-                .addGap(160, 160, 160)
+                .addGap(48, 48, 48)
                 .addComponent(jLabel3)
-                .addContainerGap(576, Short.MAX_VALUE))
+                .addContainerGap(674, Short.MAX_VALUE))
         );
+
+        jPanelEstadistica.setOpaque(false);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 204, 0));
@@ -452,7 +494,10 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap(588, Short.MAX_VALUE))
         );
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jPanelInicio.setOpaque(false);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 255, 102));
         jLabel5.setText("Inicio");
 
         javax.swing.GroupLayout jPanelInicioLayout = new javax.swing.GroupLayout(jPanelInicio);
@@ -462,14 +507,14 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(jPanelInicioLayout.createSequentialGroup()
                 .addGap(370, 370, 370)
                 .addComponent(jLabel5)
-                .addContainerGap(455, Short.MAX_VALUE))
+                .addContainerGap(380, Short.MAX_VALUE))
         );
         jPanelInicioLayout.setVerticalGroup(
             jPanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInicioLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(jLabel5)
-                .addContainerGap(704, Short.MAX_VALUE))
+                .addContainerGap(675, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelVistaLayout = new javax.swing.GroupLayout(jPanelVista);
@@ -492,7 +537,7 @@ public class Inicio extends javax.swing.JFrame {
         );
         jPanelVistaLayout.setVerticalGroup(
             jPanelVistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
+            .addGap(0, 788, Short.MAX_VALUE)
             .addGroup(jPanelVistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanelVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanelVistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -594,27 +639,30 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanelAlmacen;
+    private javax.swing.JPanel jPanelDevolucionVentas;
+    private javax.swing.JPanel jPanelEliminarPedido;
     private javax.swing.JPanel jPanelEstadistica;
     private javax.swing.JPanel jPanelInicio;
     private javax.swing.JPanel jPanelMenu;
+    private javax.swing.JPanel jPanelModificarPedido;
+    private javax.swing.JPanel jPanelMostrar;
+    private javax.swing.JPanel jPanelNuevoPedido;
     private javax.swing.JPanel jPanelOferta;
     private javax.swing.JPanel jPanelPedido;
     private javax.swing.JPanel jPanelVenta;
+    private javax.swing.JPanel jPanelVentaVentas;
     private javax.swing.JPanel jPanelVista;
     private javax.swing.JPanel jPanelfondo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton ofertas;
     private javax.swing.JButton pedidos;
