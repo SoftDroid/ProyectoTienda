@@ -1,7 +1,10 @@
 
 package Vista;
 
+import Controlador.BotonesAlmacen;
 import Controlador.BotonesInicio;
+import Modelo.ProductoDB;
+import Modelo.UsuarioDB;
 import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.BorderFactory;
@@ -18,6 +21,7 @@ import javax.swing.JPanel;
 
 public class Inicio extends javax.swing.JFrame {
     private ArrayList listProductosAlmacen;
+    
     public Inicio() {
         initComponents();
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());//Para Maximizar la ventana
@@ -26,12 +30,8 @@ public class Inicio extends javax.swing.JFrame {
         this.jPanelVista.setOpaque(false);
         jPanelPedido.setOpaque(false);
         inicializarMenuBar();//Inicializamos la barra de menu
-        //llamarLogin();
-        this.jPanelVenta.setVisible(false);//Todos los paneles se inicializan no visibles menos el panel de inicio
-        this.jPanelPedido.setVisible(false);
-        this.jPanelAlmacen.setVisible(false);
-        this.jPanelOferta.setVisible(false);
-        this.jPanelEstadistica.setVisible(false);
+        llamarLogin();
+        ocultarPaneles();// metodo para ocultar los paneles que no se deben ver al inicializar la aplicacion
         inicializarActionCommand();//metodo para añadir el ActionComand a los botones del menu y reconocer la llamada de cada boton en los listeners del controlador
 
         this.inicio.addActionListener(new BotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));//Se inicializan los listeners de los botones del menu
@@ -41,9 +41,12 @@ public class Inicio extends javax.swing.JFrame {
         this.ofertas.addActionListener(new BotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));
         this.estadistica.addActionListener(new BotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));
         
-        this.listProductosAlmacen=new ArrayList();
-        this.listProductosAlmacen.add(new Object []{1234,"Camiseta corta",12.90,14.90,"Verano","Rojo","M","","",11,"Sin oferta",false});
-        ModeloTablaProductos modeloAlmacen=new ModeloTablaProductos(listProductosAlmacen);
+        this.botonActualizarAlmacen.addActionListener(new BotonesAlmacen(tablaAlmacen));
+        this.botonAnadirAlmacen.addActionListener(new BotonesAlmacen());
+        this.botonBuscarAlmacen.addActionListener(new BotonesAlmacen());
+        
+        
+        ModeloTablaProductos modeloAlmacen=new ModeloTablaProductos(new ProductoDB().mostrarAlmacen());
         this.tablaAlmacen.setModel(modeloAlmacen);
         
         ModeloTablaPedidos modeloPedido=new ModeloTablaPedidos(new ArrayList());
@@ -141,7 +144,8 @@ public class Inicio extends javax.swing.JFrame {
         tablaAlmacen = new javax.swing.JTable();
         botonBuscarAlmacen = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        BotonAnadirAlmacen = new javax.swing.JButton();
+        botonAnadirAlmacen = new javax.swing.JButton();
+        botonActualizarAlmacen = new javax.swing.JButton();
         jPanelOferta = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanelEstadistica = new javax.swing.JPanel();
@@ -187,6 +191,7 @@ public class Inicio extends javax.swing.JFrame {
         pedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/PedidoA.png"))); // NOI18N
         pedidos.setBorderPainted(false);
         pedidos.setContentAreaFilled(false);
+        pedidos.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/pedidoinactivo.png"))); // NOI18N
         pedidos.setPreferredSize(new java.awt.Dimension(50, 20));
         pedidos.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/PedidoB.png"))); // NOI18N
         pedidos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/PedidoC.png"))); // NOI18N
@@ -208,6 +213,7 @@ public class Inicio extends javax.swing.JFrame {
         ofertas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/OfertasA.png"))); // NOI18N
         ofertas.setBorderPainted(false);
         ofertas.setContentAreaFilled(false);
+        ofertas.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/ofertasinactivo.png"))); // NOI18N
         ofertas.setPreferredSize(new java.awt.Dimension(50, 20));
         ofertas.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/OfertasB.png"))); // NOI18N
         ofertas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/OfertasC.png"))); // NOI18N
@@ -216,6 +222,7 @@ public class Inicio extends javax.swing.JFrame {
         estadistica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/EstadisticasA.png"))); // NOI18N
         estadistica.setBorderPainted(false);
         estadistica.setContentAreaFilled(false);
+        estadistica.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/estadisticainactivo.png"))); // NOI18N
         estadistica.setPreferredSize(new java.awt.Dimension(50, 20));
         estadistica.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/EstadisticasB.png"))); // NOI18N
         estadistica.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/EstadisticasC.png"))); // NOI18N
@@ -238,19 +245,19 @@ public class Inicio extends javax.swing.JFrame {
         jPanelMenuLayout.setVerticalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMenuLayout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(almacen, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(ofertas, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(estadistica, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         inicio.getAccessibleContext().setAccessibleDescription("");
@@ -315,7 +322,7 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(306, Short.MAX_VALUE))
         );
         jPanelVentaVentasLayout.setVerticalGroup(
             jPanelVentaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,7 +346,7 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(jLabel11)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Realizar venta", jPanelVentaVentas);
@@ -348,11 +355,11 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 880, Short.MAX_VALUE)
+            .addGap(0, 1023, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 688, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Devoluciones", jPanel1);
@@ -363,12 +370,13 @@ public class Inicio extends javax.swing.JFrame {
             jPanelVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelVentaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(jPanelVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane1)
+                    .addGroup(jPanelVentaLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanelVentaLayout.createSequentialGroup()
-                .addGap(350, 350, 350)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelVentaLayout.setVerticalGroup(
             jPanelVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -425,13 +433,13 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(botonAnadirElementoPedido)
                         .addComponent(botonBorrarElementoPedido))
                     .addComponent(botonRealizarPedido))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
         jPanelNuevoPedidoLayout.setVerticalGroup(
             jPanelNuevoPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelNuevoPedidoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanelNuevoPedidoLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
@@ -480,13 +488,13 @@ public class Inicio extends javax.swing.JFrame {
                     .addGroup(jPanelModificarPedidoLayout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addComponent(botonGuardarModificacion)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         jPanelModificarPedidoLayout.setVerticalGroup(
             jPanelModificarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelModificarPedidoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanelModificarPedidoLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
@@ -524,7 +532,7 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(jPanelMostrarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
                 .addGroup(jPanelMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonEliminarPedido)
                     .addComponent(botonLlamarModificacion))
@@ -534,7 +542,7 @@ public class Inicio extends javax.swing.JFrame {
             jPanelMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMostrarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanelMostrarLayout.createSequentialGroup()
                 .addGap(127, 127, 127)
@@ -551,12 +559,13 @@ public class Inicio extends javax.swing.JFrame {
         jPanelPedidoLayout.setHorizontalGroup(
             jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPedidoLayout.createSequentialGroup()
-                .addGap(300, 300, 300)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanelPedidoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2)
+                .addGroup(jPanelPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelPedidoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane2))
                 .addContainerGap())
         );
         jPanelPedidoLayout.setVerticalGroup(
@@ -593,7 +602,9 @@ public class Inicio extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 255, 102));
         jLabel6.setText("ALMACEN");
 
-        BotonAnadirAlmacen.setText("Añadir");
+        botonAnadirAlmacen.setText("Añadir");
+
+        botonActualizarAlmacen.setText("Actualizar");
 
         javax.swing.GroupLayout jPanelAlmacenLayout = new javax.swing.GroupLayout(jPanelAlmacen);
         jPanelAlmacen.setLayout(jPanelAlmacenLayout);
@@ -601,31 +612,34 @@ public class Inicio extends javax.swing.JFrame {
             jPanelAlmacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAlmacenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAlmacenLayout.createSequentialGroup()
-                .addGap(215, 215, 215)
-                .addComponent(botonBuscarAlmacen)
-                .addGap(134, 134, 134)
-                .addComponent(BotonAnadirAlmacen)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAlmacenLayout.createSequentialGroup()
-                .addContainerGap(300, Short.MAX_VALUE)
+                .addContainerGap(364, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(300, 300, 300))
+                .addContainerGap(364, Short.MAX_VALUE))
+            .addGroup(jPanelAlmacenLayout.createSequentialGroup()
+                .addGap(228, 228, 228)
+                .addComponent(botonBuscarAlmacen)
+                .addGap(129, 129, 129)
+                .addComponent(botonAnadirAlmacen)
+                .addGap(102, 102, 102)
+                .addComponent(botonActualizarAlmacen)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelAlmacenLayout.setVerticalGroup(
             jPanelAlmacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAlmacenLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanelAlmacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonBuscarAlmacen)
-                    .addComponent(BotonAnadirAlmacen))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(botonAnadirAlmacen)
+                    .addComponent(botonActualizarAlmacen))
+                .addGap(47, 47, 47))
         );
 
         jPanelOferta.setOpaque(false);
@@ -701,7 +715,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanelVista.setLayout(jPanelVistaLayout);
         jPanelVistaLayout.setHorizontalGroup(
             jPanelVistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 905, Short.MAX_VALUE)
+            .addGap(0, 1048, Short.MAX_VALUE)
             .addGroup(jPanelVistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanelVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanelVistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -814,8 +828,9 @@ public class Inicio extends javax.swing.JFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonAnadirAlmacen;
     private javax.swing.JButton almacen;
+    private javax.swing.JButton botonActualizarAlmacen;
+    private javax.swing.JButton botonAnadirAlmacen;
     private javax.swing.JButton botonAnadirElementoPedido;
     private javax.swing.JButton botonBorrarElementoPedido;
     private javax.swing.JButton botonBuscarAlmacen;
@@ -883,6 +898,7 @@ public class Inicio extends javax.swing.JFrame {
                 if(login.comprobarUsuario()){
                     JOptionPane.showMessageDialog(this, "Bienvenido "+login.getUsuario(), "Saludo", WIDTH);
                     usuarioCorrecto=true;
+                    comprobarTipo(login.getUsuario());
                 }else{
                     JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -893,11 +909,30 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     private void inicializarActionCommand() {
-        inicio.setActionCommand("inicio");
-        ventas.setActionCommand("ventas");
-        pedidos.setActionCommand("pedidos");
-        almacen.setActionCommand("almacen");
-        ofertas.setActionCommand("ofertas");
-        estadistica.setActionCommand("estadistica");
+        this.inicio.setActionCommand("inicio");
+        this.ventas.setActionCommand("ventas");
+        this.pedidos.setActionCommand("pedidos");
+        this.almacen.setActionCommand("almacen");
+        this.ofertas.setActionCommand("ofertas");
+        this.estadistica.setActionCommand("estadistica");
+        this.botonAnadirAlmacen.setActionCommand("añadirAlmacen");
+        this.botonBuscarAlmacen.setActionCommand("buscarAlmacen");
+        this.botonActualizarAlmacen.setActionCommand("actualizarAlmacen");
+    }
+
+    private void comprobarTipo(String usuario) {
+        if(!UsuarioDB.getTipoUsuario(usuario).equals("ADMINISTRADOR")){
+            this.pedidos.setEnabled(false);
+            this.ofertas.setEnabled(false);
+            this.estadistica.setEnabled(false);
+        }
+    }
+
+    private void ocultarPaneles() {
+        this.jPanelVenta.setVisible(false);//Todos los paneles se inicializan no visibles menos el panel de inicio
+        this.jPanelPedido.setVisible(false);
+        this.jPanelAlmacen.setVisible(false);
+        this.jPanelOferta.setVisible(false);
+        this.jPanelEstadistica.setVisible(false);
     }
 }

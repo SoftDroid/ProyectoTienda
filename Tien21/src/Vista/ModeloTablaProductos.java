@@ -7,7 +7,7 @@ import javax.swing.table.AbstractTableModel;
 public class ModeloTablaProductos extends AbstractTableModel {
     ArrayList datos = new ArrayList();
     String [] nombreCol= new String[] {"Codigo","Nombre","Precio Proveedor","Precio Venta","Temporada","Color","Talla","Familia","SubFamilia","Stock","Oferta","Descatalogado"};
-    Class [] type = new Class[]{java.lang.Integer.class,java.lang.String.class,java.lang.Double.class,java.lang.Double.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.Integer.class,java.lang.String.class,java.lang.Boolean.class};
+    Class [] type = new Class[]{java.lang.String.class,java.lang.String.class,java.lang.Double.class,java.lang.Double.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.Integer.class,java.lang.Integer.class,java.lang.Boolean.class};
 
     public ModeloTablaProductos(ArrayList list){
         this.datos=list;
