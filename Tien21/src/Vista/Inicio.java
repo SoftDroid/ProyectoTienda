@@ -30,7 +30,7 @@ public class Inicio extends javax.swing.JFrame {
         this.jPanelVista.setOpaque(false);
         jPanelPedido.setOpaque(false);
         inicializarMenuBar();//Inicializamos la barra de menu
-        llamarLogin();
+        //llamarLogin();
         ocultarPaneles();// metodo para ocultar los paneles que no se deben ver al inicializar la aplicacion
         inicializarActionCommand();//metodo para añadir el ActionComand a los botones del menu y reconocer la llamada de cada boton en los listeners del controlador
 
@@ -51,9 +51,6 @@ public class Inicio extends javax.swing.JFrame {
         
         ModeloTablaPedidos modeloPedido=new ModeloTablaPedidos(new ArrayList());
         this.tablaPedido.setModel(modeloPedido);
-        
-        ModeloTablaPedidos modeloModificarPedido=new ModeloTablaPedidos(new ArrayList());
-        this.tablaModificarPedido.setModel(modeloModificarPedido);
         
         ModeloTablaEliminarPedido modeloEliminarPedido=new ModeloTablaEliminarPedido(new ArrayList());
         this.tablaEliminarPedido.setModel(modeloEliminarPedido);
@@ -118,6 +115,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanelPedido = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -128,12 +126,6 @@ public class Inicio extends javax.swing.JFrame {
         botonAnadirElementoPedido = new javax.swing.JButton();
         botonBorrarElementoPedido = new javax.swing.JButton();
         botonRealizarPedido = new javax.swing.JButton();
-        jPanelModificarPedido = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tablaModificarPedido = new javax.swing.JTable();
-        comboPedidoModificacion = new javax.swing.JComboBox();
-        botonGuardarModificacion = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
         jPanelMostrar = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaEliminarPedido = new javax.swing.JTable();
@@ -297,6 +289,8 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel11.setText("jLabel11");
 
+        jButton3.setText("Realizar Venta");
+
         javax.swing.GroupLayout jPanelVentaVentasLayout = new javax.swing.GroupLayout(jPanelVentaVentas);
         jPanelVentaVentas.setLayout(jPanelVentaVentasLayout);
         jPanelVentaVentasLayout.setHorizontalGroup(
@@ -315,13 +309,15 @@ public class Inicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelVentaVentasLayout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelVentaVentasLayout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelVentaVentasLayout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelVentaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(306, Short.MAX_VALUE))
         );
         jPanelVentaVentasLayout.setVerticalGroup(
@@ -344,7 +340,9 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(jPanelVentaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel11)))
+                            .addComponent(jLabel11))
+                        .addGap(79, 79, 79)
+                        .addComponent(jButton3))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(197, Short.MAX_VALUE))
         );
@@ -452,61 +450,6 @@ public class Inicio extends javax.swing.JFrame {
         );
 
         jTabbedPane2.addTab("Nuevo", jPanelNuevoPedido);
-
-        tablaModificarPedido.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane5.setViewportView(tablaModificarPedido);
-
-        comboPedidoModificacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        botonGuardarModificacion.setText("Guardar Modificación");
-
-        jLabel12.setText("Pedido:");
-
-        javax.swing.GroupLayout jPanelModificarPedidoLayout = new javax.swing.GroupLayout(jPanelModificarPedido);
-        jPanelModificarPedido.setLayout(jPanelModificarPedidoLayout);
-        jPanelModificarPedidoLayout.setHorizontalGroup(
-            jPanelModificarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelModificarPedidoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanelModificarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelModificarPedidoLayout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addGroup(jPanelModificarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboPedidoModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12)))
-                    .addGroup(jPanelModificarPedidoLayout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(botonGuardarModificacion)))
-                .addContainerGap(207, Short.MAX_VALUE))
-        );
-        jPanelModificarPedidoLayout.setVerticalGroup(
-            jPanelModificarPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelModificarPedidoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanelModificarPedidoLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel12)
-                .addGap(18, 18, 18)
-                .addComponent(comboPedidoModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
-                .addComponent(botonGuardarModificacion)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane2.addTab("Modificar", jPanelModificarPedido);
 
         tablaEliminarPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -835,18 +778,16 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton botonBorrarElementoPedido;
     private javax.swing.JButton botonBuscarAlmacen;
     private javax.swing.JButton botonEliminarPedido;
-    private javax.swing.JButton botonGuardarModificacion;
     private javax.swing.JButton botonLlamarModificacion;
     private javax.swing.JButton botonRealizarPedido;
-    private javax.swing.JComboBox comboPedidoModificacion;
     private javax.swing.JButton estadistica;
     private javax.swing.JButton inicio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -863,7 +804,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelEstadistica;
     private javax.swing.JPanel jPanelInicio;
     private javax.swing.JPanel jPanelMenu;
-    private javax.swing.JPanel jPanelModificarPedido;
     private javax.swing.JPanel jPanelMostrar;
     private javax.swing.JPanel jPanelNuevoPedido;
     private javax.swing.JPanel jPanelOferta;
@@ -876,7 +816,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField2;
@@ -884,7 +823,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton pedidos;
     private javax.swing.JTable tablaAlmacen;
     private javax.swing.JTable tablaEliminarPedido;
-    private javax.swing.JTable tablaModificarPedido;
     private javax.swing.JTable tablaPedido;
     private javax.swing.JTable tablaVenta;
     private javax.swing.JButton ventas;

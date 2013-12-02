@@ -3,6 +3,7 @@ package Controlador;
 
 import Modelo.ProductoDB;
 import Vista.AñadirProducto;
+import Vista.Buscar;
 import Vista.ModeloTablaProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +28,8 @@ public class BotonesAlmacen implements ActionListener{
                     nuevaVentana.setVisible(true);
                     break;
             case "buscarAlmacen":   
-                   
+                    Buscar buscarVentana=new Buscar(null, true);
+                    buscarVentana.setVisible(true);
                     break;
             case "actualizarAlmacen":
                     ModeloTablaProductos modeloAlmacen=new ModeloTablaProductos(new ProductoDB().mostrarAlmacen());
