@@ -43,7 +43,7 @@ public class Inicio extends javax.swing.JFrame {
         
         this.botonActualizarAlmacen.addActionListener(new BotonesAlmacen(tablaAlmacen));
         this.botonAnadirAlmacen.addActionListener(new BotonesAlmacen());
-        this.botonBuscarAlmacen.addActionListener(new BotonesAlmacen());
+        this.botonBuscarAlmacen.addActionListener(new BotonesAlmacen(this));
         
         
         ModeloTablaProductos modeloAlmacen=new ModeloTablaProductos(new ProductoDB().mostrarAlmacen());
@@ -872,5 +872,22 @@ public class Inicio extends javax.swing.JFrame {
         this.jPanelAlmacen.setVisible(false);
         this.jPanelOferta.setVisible(false);
         this.jPanelEstadistica.setVisible(false);
+    }
+    
+    public void buscarAlmacen(String tipo,String valor){
+        if(tipo.equals("nombre")){
+            System.out.println("pepepe"+ valor);
+            ArrayList<Object> listaBucar=new ProductoDB().buscarNombre(valor);
+            ModeloTablaProductos modeloAlmacen=new ModeloTablaProductos(listaBucar);
+            this.tablaAlmacen.setModel(modeloAlmacen);
+        }else{
+            ArrayList listaBucar=new ProductoDB().buscarCodigo(valor);
+            ModeloTablaProductos modeloAlmacen=new ModeloTablaProductos(listaBucar);
+            this.tablaAlmacen.setModel(modeloAlmacen);
+        }
+    }
+    
+    public void buscarVenta(String tipo,String valor){
+    
     }
 }

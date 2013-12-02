@@ -1,12 +1,29 @@
 
 package Vista;
 
+import Controlador.BotonesBuscar;
+import Controlador.BotonesInicio;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+
 public class Buscar extends javax.swing.JDialog {
 
-    public Buscar(java.awt.Frame parent, boolean modal) {
+    public Buscar(java.awt.Frame parent, boolean modal, Inicio frame, int aux) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);//coloca ventana en el centro
+        
+        this.jButtonBuscarNombre.setActionCommand("buscarNombre");
+        this.jButtonBuscarCodigo.setActionCommand("buscarCodigo");
+        
+        this.jButtonBuscarNombre.addActionListener(new BotonesBuscar(campoNombre.getText().trim(),frame,aux));
+        this.jButtonBuscarCodigo.addActionListener(new BotonesBuscar(campoCodigo.getText().trim(),frame,aux));
+ 
+    }
+
+    private Buscar(JFrame jFrame, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    
@@ -17,11 +34,11 @@ public class Buscar extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        campoNombre = new javax.swing.JTextField();
         jButtonBuscarNombre = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        campoCodigo = new javax.swing.JTextField();
         jButtonBuscarCodigo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -42,7 +59,7 @@ public class Buscar extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1))
@@ -57,7 +74,7 @@ public class Buscar extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonBuscarNombre)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -80,7 +97,7 @@ public class Buscar extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField2)
+                        .addComponent(campoCodigo)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 12, Short.MAX_VALUE)
@@ -97,7 +114,7 @@ public class Buscar extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonBuscarCodigo)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -189,6 +206,8 @@ public class Buscar extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField campoCodigo;
+    private javax.swing.JTextField campoNombre;
     private javax.swing.JButton jButtonBuscarCodigo;
     private javax.swing.JButton jButtonBuscarNombre;
     private javax.swing.JLabel jLabel1;
@@ -196,7 +215,5 @@ public class Buscar extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
