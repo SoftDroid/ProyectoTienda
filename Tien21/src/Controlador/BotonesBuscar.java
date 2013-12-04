@@ -2,27 +2,26 @@
 package Controlador;
 
 import Vista.Inicio;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JTextField;
 
 public class BotonesBuscar implements ActionListener {
-    private String valor;
     private Inicio frame;
     private int aux;
-    public BotonesBuscar(String valor) {
-        this.valor=valor;
-    }
+    private JTextField campo;
 
-    public BotonesBuscar(String valor, Inicio frame, int aux) {
-        this.valor=valor;
+    public BotonesBuscar(JTextField campo, Inicio frame, int aux) {
+        this.campo=campo;
         this.frame=frame;
         this.aux=aux;
-        System.out.println(valor);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String s=e.getActionCommand();
+        String valor=this.campo.getText().trim();
         switch(s){
             case "buscarNombre":
                 if(aux==1){
@@ -30,7 +29,6 @@ public class BotonesBuscar implements ActionListener {
                 }else{
                     frame.buscarAlmacen("nombre", valor);
                 }
-                frame.buscarAlmacen("nombre", valor);
                 break;
             case "buscarCodigo":
                 if(aux==1){

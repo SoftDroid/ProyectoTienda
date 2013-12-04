@@ -16,9 +16,8 @@ public class Buscar extends javax.swing.JDialog {
         
         this.jButtonBuscarNombre.setActionCommand("buscarNombre");
         this.jButtonBuscarCodigo.setActionCommand("buscarCodigo");
-        
-        this.jButtonBuscarNombre.addActionListener(new BotonesBuscar(campoNombre.getText().trim(),frame,aux));
-        this.jButtonBuscarCodigo.addActionListener(new BotonesBuscar(campoCodigo.getText().trim(),frame,aux));
+        this.jButtonBuscarNombre.addActionListener(new BotonesBuscar(campoNombre,frame, aux));
+        this.jButtonBuscarCodigo.addActionListener(new BotonesBuscar(campoCodigo,frame,aux));
  
     }
 

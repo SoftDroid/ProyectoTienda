@@ -22,6 +22,8 @@ public class AñadirProducto extends javax.swing.JDialog {
     public AñadirProducto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        ArrayList<Object> listColores=new ArrayList <Object>();
+        ArrayList<Object> listTallas=new ArrayList <Object>();
         setLocationRelativeTo(null);//coloca ventana en el centro
         this.jButtonAnadir.setActionCommand("añadir");
         this.jButtonCancelar.setActionCommand("cancelar");
@@ -38,6 +40,7 @@ public class AñadirProducto extends javax.swing.JDialog {
         for(int cont=0;cont<color.size();cont++){//bucle que recorre el array de colores
             Checkbox aux = new Checkbox(color.get(cont));//creo el checkbox
             aux.setFont(new java.awt.Font("Tahoma", 0, 14));
+            listColores.add(aux);
             jPanelScrollColor.add(aux);//añado el checbox al panel de colores
             jPanelScrollColor.repaint();//repinto
             jPanelScrollColor.updateUI();
@@ -48,6 +51,7 @@ public class AñadirProducto extends javax.swing.JDialog {
         for(int cont=0;cont<talla.size();cont++){//bucle que recorre el array de talla
             Checkbox aux = new Checkbox(talla.get(cont));//creo el checkbox
             aux.setFont(new java.awt.Font("Tahome", 0, 14));
+            listTallas.add(aux);
             jPanelScrollTalla.add(aux);//añado el checbox al panel de tallas
             jPanelScrollTalla.repaint();//repinto
             jPanelScrollTalla.updateUI();
@@ -78,6 +82,7 @@ public class AñadirProducto extends javax.swing.JDialog {
         });
         
        this.jButtonCancelar.addActionListener(new BotonesAnadirProducto(this));
+   
     }
 
    
