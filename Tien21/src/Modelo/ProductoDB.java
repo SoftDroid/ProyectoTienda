@@ -95,4 +95,14 @@ public class ProductoDB {
         }
         return lista;
     }
+    
+    public static void insertar(String sql){
+        Connection conexion=ConexionDB.conexion();
+        try{
+            Statement st=conexion.createStatement();
+            st.executeUpdate(sql);
+        }catch(Exception e){
+            System.out.println("Error pDB "+e);
+        }
+    }
 }

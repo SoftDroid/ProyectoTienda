@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Controlador.ListenerBotonesAlmacen;
 import Controlador.ListenerBotonesAnadirProducto;
 import Modelo.ColorDB;
 import Modelo.FamiliaDB;
@@ -48,6 +49,7 @@ public class AñadirProducto extends javax.swing.JDialog {
         
         ArrayList <String>talla=TallaDB.getTallas();//array con todos los tallas del a base de datos
         jPanelScrollTalla.setLayout(new BoxLayout(jPanelScrollTalla,BoxLayout.Y_AXIS));
+        
         for(int cont=0;cont<talla.size();cont++){//bucle que recorre el array de talla
             Checkbox aux = new Checkbox(talla.get(cont));//creo el checkbox
             aux.setFont(new java.awt.Font("Tahome", 0, 14));
@@ -82,7 +84,7 @@ public class AñadirProducto extends javax.swing.JDialog {
         });
         
        this.jButtonCancelar.addActionListener(new ListenerBotonesAnadirProducto(this));
-   
+       this.jButtonAnadir.addActionListener(new ListenerBotonesAnadirProducto(this,this.nombreAnadirProducto,this.codigoAnadirProducto,this.stockAnadirProducto,this.precioPAnadirProducto,this.precioVAnadirProducto,this.temporadaAnadirProducto,this.familiaAnadirProducto,this.subfaAnadirProducto,this.jCheckBoxOferta,this.ofertaAnadirProducto,listColores,listTallas));
     }
 
    

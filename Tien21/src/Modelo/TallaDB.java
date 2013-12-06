@@ -26,4 +26,23 @@ public class TallaDB {
         }
         return lista;
     }
+     
+     public static String getId(String nombre){
+        String id=null;
+        String sql="SELECT * FROM talla Where Talla='"+nombre+"';";
+        try{
+            Connection connect= ConexionDB.conexion();
+            PreparedStatement select=connect.prepareStatement(sql);
+            ResultSet result=select.executeQuery();
+            while(result.next()){
+                id=result.getString(1);
+            }
+            result.close();
+            select.close();
+            connect.close();
+        }catch(SQLException e){
+            System.out.println("Error con SQL"+e);
+        }
+        return id;
+    }
 }
