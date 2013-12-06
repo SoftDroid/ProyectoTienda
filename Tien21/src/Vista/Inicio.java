@@ -1,8 +1,8 @@
 
 package Vista;
 
-import Controlador.BotonesAlmacen;
-import Controlador.BotonesInicio;
+import Controlador.ListenerBotonesAlmacen;
+import Controlador.ListenerBotonesInicio;
 import Modelo.ProductoDB;
 import Modelo.UsuarioDB;
 import java.awt.Color;
@@ -34,16 +34,16 @@ public class Inicio extends javax.swing.JFrame {
         ocultarPaneles();// metodo para ocultar los paneles que no se deben ver al inicializar la aplicacion
         inicializarActionCommand();//metodo para añadir el ActionComand a los botones del menu y reconocer la llamada de cada boton en los listeners del controlador
 
-        this.inicio.addActionListener(new BotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));//Se inicializan los listeners de los botones del menu
-        this.ventas.addActionListener(new BotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));
-        this.pedidos.addActionListener(new BotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));
-        this.almacen.addActionListener(new BotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));
-        this.ofertas.addActionListener(new BotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));
-        this.estadistica.addActionListener(new BotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));
+        this.inicio.addActionListener(new ListenerBotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));//Se inicializan los listeners de los botones del menu
+        this.ventas.addActionListener(new ListenerBotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));
+        this.pedidos.addActionListener(new ListenerBotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));
+        this.almacen.addActionListener(new ListenerBotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));
+        this.ofertas.addActionListener(new ListenerBotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));
+        this.estadistica.addActionListener(new ListenerBotonesInicio(jPanelInicio,jPanelVenta,jPanelPedido,jPanelAlmacen,jPanelOferta,jPanelEstadistica, this));
         
-        this.botonActualizarAlmacen.addActionListener(new BotonesAlmacen(tablaAlmacen));
-        this.botonAnadirAlmacen.addActionListener(new BotonesAlmacen());
-        this.botonBuscarAlmacen.addActionListener(new BotonesAlmacen(this));
+        this.botonActualizarAlmacen.addActionListener(new ListenerBotonesAlmacen(tablaAlmacen));
+        this.botonAnadirAlmacen.addActionListener(new ListenerBotonesAlmacen());
+        this.botonBuscarAlmacen.addActionListener(new ListenerBotonesAlmacen(this));
         
         
         ModeloTablaProductos modeloAlmacen=new ModeloTablaProductos(new ProductoDB().mostrarAlmacen());
@@ -876,12 +876,11 @@ public class Inicio extends javax.swing.JFrame {
     
     public void buscarAlmacen(String tipo,String valor){
         if(tipo.equals("nombre")){
-            System.out.println("pepepe"+ valor);
             ArrayList<Object> listaBucar=new ProductoDB().buscarNombre(valor);
             ModeloTablaProductos modeloAlmacen=new ModeloTablaProductos(listaBucar);
             this.tablaAlmacen.setModel(modeloAlmacen);
         }else{
-            ArrayList listaBucar=new ProductoDB().buscarCodigo(valor);
+            ArrayList<Object> listaBucar=new ProductoDB().buscarCodigo(valor);
             ModeloTablaProductos modeloAlmacen=new ModeloTablaProductos(listaBucar);
             this.tablaAlmacen.setModel(modeloAlmacen);
         }

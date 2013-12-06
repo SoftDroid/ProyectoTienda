@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 
 
-public class BotonesInicio implements ActionListener {
+public class ListenerBotonesInicio implements ActionListener {
     private JPanel panelInicio;
     private JPanel panelVenta;
     private JPanel panelPedido;
@@ -18,7 +18,7 @@ public class BotonesInicio implements ActionListener {
     private JPanel panelEstadistica;
     private JFrame frame;
 
-    public BotonesInicio(JPanel jPanelInicio, JPanel jPanelVenta, JPanel jPanelPedido, JPanel jPanelAlmacen, JPanel jPanelOferta, JPanel jPanelEstadistica, Inicio frame) {
+    public ListenerBotonesInicio(JPanel jPanelInicio, JPanel jPanelVenta, JPanel jPanelPedido, JPanel jPanelAlmacen, JPanel jPanelOferta, JPanel jPanelEstadistica, Inicio frame) {
         this.panelInicio=jPanelInicio;
         this.panelVenta=jPanelVenta;
         this.panelPedido=jPanelPedido;

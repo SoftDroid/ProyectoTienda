@@ -8,10 +8,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
-public class BotonesAnadirProducto implements ActionListener {
+public class ListenerBotonesAnadirProducto implements ActionListener {
     private AñadirProducto ventana;
     
-    public BotonesAnadirProducto(AñadirProducto aThis) {
+    public ListenerBotonesAnadirProducto(AñadirProducto aThis) {
         this.ventana=aThis;
     }
 

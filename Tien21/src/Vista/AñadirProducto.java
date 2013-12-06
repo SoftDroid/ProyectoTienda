@@ -1,7 +1,7 @@
 
 package Vista;
 
-import Controlador.BotonesAnadirProducto;
+import Controlador.ListenerBotonesAnadirProducto;
 import Modelo.ColorDB;
 import Modelo.FamiliaDB;
 import Modelo.OfertaDB;
@@ -81,7 +81,7 @@ public class AñadirProducto extends javax.swing.JDialog {
             }
         });
         
-       this.jButtonCancelar.addActionListener(new BotonesAnadirProducto(this));
+       this.jButtonCancelar.addActionListener(new ListenerBotonesAnadirProducto(this));
    
     }
 

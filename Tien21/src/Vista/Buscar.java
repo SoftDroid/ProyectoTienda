@@ -1,23 +1,23 @@
 
 package Vista;
 
-import Controlador.BotonesBuscar;
-import Controlador.BotonesInicio;
+import Controlador.ListenerBotonesBuscarAlmacen;
+import Controlador.ListenerBotonesInicio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 public class Buscar extends javax.swing.JDialog {
 
-    public Buscar(java.awt.Frame parent, boolean modal, Inicio frame, int aux) {
+    public Buscar(java.awt.Frame parent, boolean modal, Inicio frame) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);//coloca ventana en el centro
         
         this.jButtonBuscarNombre.setActionCommand("buscarNombre");
         this.jButtonBuscarCodigo.setActionCommand("buscarCodigo");
-        this.jButtonBuscarNombre.addActionListener(new BotonesBuscar(campoNombre,frame, aux));
-        this.jButtonBuscarCodigo.addActionListener(new BotonesBuscar(campoCodigo,frame,aux));
+        this.jButtonBuscarNombre.addActionListener(new ListenerBotonesBuscarAlmacen(campoNombre,frame,this));
+        this.jButtonBuscarCodigo.addActionListener(new ListenerBotonesBuscarAlmacen(campoCodigo,frame,this));
  
     }
 

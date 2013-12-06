@@ -69,7 +69,7 @@ public class ProductoDB {
     
     public ArrayList <Object> buscarCodigo(String codigoBuscar){
         ArrayList<Object> lista=new ArrayList<Object>();
-        String sql="SELECT p.Nombre, p.Codigo, p.Stock,p.Descatalogado,c.Color, f.Nombre, o.Descuento , sf.Nombre,ta.Talla, t.Nombre ,p.PrecioProveedor, p.PrecioVenta FROM producto p,color c, temporada t, subfamilia sf, familia f,talla ta,oferta o WHERE p.Temporada_idTemporada= t.idTemporada and p.Color_idColor=c.idColor and p.Talla_idTalla=ta.idTalla and p.SubFAmilia_idSubFamilia=sf.idSubfamilia and f.idFamilia=sf.Familia_idFamilia and p.Oferta_idOferta=o.idOferta and p.Nombre='"+codigoBuscar+"';";
+        String sql="SELECT p.Nombre, p.Codigo, p.Stock,p.Descatalogado,c.Color, f.Nombre, o.Descuento , sf.Nombre,ta.Talla, t.Nombre ,p.PrecioProveedor, p.PrecioVenta FROM producto p,color c, temporada t, subfamilia sf, familia f,talla ta,oferta o WHERE p.Temporada_idTemporada= t.idTemporada and p.Color_idColor=c.idColor and p.Talla_idTalla=ta.idTalla and p.SubFAmilia_idSubFamilia=sf.idSubfamilia and f.idFamilia=sf.Familia_idFamilia and p.Oferta_idOferta=o.idOferta and p.Codigo='"+codigoBuscar+"';";
         try{
             Connection conexion=ConexionDB.conexion();
             Statement st=conexion.createStatement();

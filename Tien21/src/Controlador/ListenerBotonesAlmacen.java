@@ -10,18 +10,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTable;
 
-public class BotonesAlmacen implements ActionListener{
+public class ListenerBotonesAlmacen implements ActionListener{
     private JTable tablaAlmacen;
     private Inicio frame;
-    public BotonesAlmacen(){
+    public ListenerBotonesAlmacen(){
     
     }
 
-    public BotonesAlmacen(JTable tablaAlmacen) {
+    public ListenerBotonesAlmacen(JTable tablaAlmacen) {
         this.tablaAlmacen=tablaAlmacen;
     }
     
-    public BotonesAlmacen(Inicio frame) {
+    public ListenerBotonesAlmacen(Inicio frame) {
         this.frame=frame;
     }
     
@@ -34,8 +34,7 @@ public class BotonesAlmacen implements ActionListener{
                     nuevaVentana.setVisible(true);
                     break;
             case "buscarAlmacen":   
-                    int aux=2;
-                    Buscar buscarVentana=new Buscar(null, true, frame,aux);
+                    Buscar buscarVentana=new Buscar(null, true, frame);
                     buscarVentana.setVisible(true);
                     break;
             case "actualizarAlmacen":

@@ -1,21 +1,22 @@
 
 package Controlador;
 
+import Vista.Buscar;
 import Vista.Inicio;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 
-public class BotonesBuscar implements ActionListener {
+public class ListenerBotonesBuscarAlmacen implements ActionListener {
     private Inicio frame;
-    private int aux;
     private JTextField campo;
+    private Buscar ventana;
 
-    public BotonesBuscar(JTextField campo, Inicio frame, int aux) {
+    public ListenerBotonesBuscarAlmacen(JTextField campo, Inicio frame,Buscar ventana) {
         this.campo=campo;
         this.frame=frame;
-        this.aux=aux;
+        this.ventana=ventana;
     }
 
     @Override
@@ -24,19 +25,12 @@ public class BotonesBuscar implements ActionListener {
         String valor=this.campo.getText().trim();
         switch(s){
             case "buscarNombre":
-                if(aux==1){
-                    frame.buscarVenta("nombre", valor);
-                }else{
-                    frame.buscarAlmacen("nombre", valor);
-                }
+                frame.buscarAlmacen("nombre", valor);
+                ventana.dispose();
                 break;
             case "buscarCodigo":
-                if(aux==1){
-                    frame.buscarVenta("codigo", valor);
-                }else{
-                    frame.buscarAlmacen("codigo", valor);
-                }
-                
+                frame.buscarAlmacen("codigo", valor);
+                ventana.dispose();
                 break;
         }
     }
