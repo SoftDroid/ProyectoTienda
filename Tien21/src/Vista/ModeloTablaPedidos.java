@@ -4,7 +4,7 @@ package Vista;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-class ModeloTablaPedidos extends AbstractTableModel{
+public class ModeloTablaPedidos extends AbstractTableModel{
     ArrayList datos = new ArrayList();
     String [] nombreCol= new String[] {"Nombre","Color","Talla","Cantidad","Precio"};
     Class [] type = new Class[]{java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.Integer.class,java.lang.Double.class};

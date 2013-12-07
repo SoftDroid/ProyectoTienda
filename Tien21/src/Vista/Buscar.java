@@ -1,7 +1,7 @@
 
 package Vista;
 
-import Controlador.ListenerBotonesBuscarAlmacen;
+import Controlador.ListenerBotonesBuscar;
 import Controlador.ListenerBotonesInicio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,11 +16,22 @@ public class Buscar extends javax.swing.JDialog {
         
         this.jButtonBuscarNombre.setActionCommand("buscarNombre");
         this.jButtonBuscarCodigo.setActionCommand("buscarCodigo");
-        this.jButtonBuscarNombre.addActionListener(new ListenerBotonesBuscarAlmacen(campoNombre,frame,this));
-        this.jButtonBuscarCodigo.addActionListener(new ListenerBotonesBuscarAlmacen(campoCodigo,frame,this));
+        this.jButtonBuscarNombre.addActionListener(new ListenerBotonesBuscar(campoNombre,frame,this));
+        this.jButtonBuscarCodigo.addActionListener(new ListenerBotonesBuscar(campoCodigo,frame,this));
  
     }
-
+    
+    public Buscar(java.awt.Frame parent, boolean modal, AñadirPedido ventana) {
+        super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);//coloca ventana en el centro
+        
+        this.jButtonBuscarNombre.setActionCommand("buscarNombre");
+        this.jButtonBuscarCodigo.setActionCommand("buscarCodigo");
+        this.jButtonBuscarNombre.addActionListener(new ListenerBotonesBuscar(campoNombre,ventana,this));
+        this.jButtonBuscarCodigo.addActionListener(new ListenerBotonesBuscar(campoCodigo,ventana,this));
+    }
+    
     private Buscar(JFrame jFrame, boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

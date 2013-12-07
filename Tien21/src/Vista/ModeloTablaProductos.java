@@ -55,6 +55,10 @@ public class ModeloTablaProductos extends AbstractTableModel {
         fireTableDataChanged();
     }
     
+    public Object getFila(int fila){
+        return datos.get(fila);
+    }
+    
     public boolean inCellEditable(int row, int col){
         boolean editable;
         if(col==nombreCol.length-1)
