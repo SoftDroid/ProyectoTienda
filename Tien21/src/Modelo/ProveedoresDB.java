@@ -23,4 +23,20 @@ public class ProveedoresDB {
         }
         return lista;
     }
+
+    public static int getId(String proveedor) {
+        int id=0;
+        Connection conexion=ConexionDB.conexion();
+        try{
+            Statement st=conexion.createStatement();
+            String sql="Select idProveedor from proveedor where  Nombre='"+proveedor+"';";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                id=rs.getInt(1);
+            }
+        }catch(Exception e){
+            System.out.println("Error getId proveedor");
+        }
+        return id;
+    }
 }

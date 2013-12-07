@@ -9,6 +9,22 @@ import java.util.ArrayList;
 
 public class ProductoDB {
 
+    public static int getId(String nombre, String color, String talla) {
+        int id=0;
+        Connection conexion=ConexionDB.conexion();
+        try{
+            Statement st=conexion.createStatement();
+            String sql="Select p.idProducto from producto p, color c, talla t where  p.Talla_idTalla=t.idTalla and p.Color_idColor=c.idColor and p.nombre='"+nombre+"' and c.color='"+color+"' and t.talla='"+talla+"';";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                id=rs.getInt(1);
+            }
+        }catch(Exception e){
+            System.out.println("Error getId producto");
+        }
+        return id;
+    }
+
     public ArrayList<Object> mostrarAlmacen(){
         ArrayList<Object> lista=new ArrayList<Object>();
         String sql="SELECT p.Nombre, p.Codigo, p.Stock,p.Descatalogado,c.Color, f.Nombre, o.Descuento , sf.Nombre,ta.Talla, t.Nombre ,p.PrecioProveedor, p.PrecioVenta FROM producto p,color c, temporada t, subfamilia sf, familia f,talla ta,oferta o WHERE p.Temporada_idTemporada= t.idTemporada and p.Color_idColor=c.idColor and p.Talla_idTalla=ta.idTalla and p.SubFAmilia_idSubFamilia=sf.idSubfamilia and f.idFamilia=sf.Familia_idFamilia and p.Oferta_idOferta=o.idOferta";

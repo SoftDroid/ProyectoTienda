@@ -33,7 +33,7 @@ public class Inicio extends javax.swing.JFrame {
         this.jPanelVista.setOpaque(false);
         jPanelPedido.setOpaque(false);
         inicializarMenuBar();//Inicializamos la barra de menu
-        //llamarLogin();
+        llamarLogin();
         ocultarPaneles();// metodo para ocultar los paneles que no se deben ver al inicializar la aplicacion
         inicializarActionCommand();//metodo para añadir el ActionComand a los botones del menu y reconocer la llamada de cada boton en los listeners del controlador
 
@@ -65,7 +65,7 @@ public class Inicio extends javax.swing.JFrame {
         
         this.botonAnadirElementoPedido.addActionListener(new ListenerBotonesPedido(this));
         this.botonBorrarElementoPedido.addActionListener(new ListenerBotonesPedido(this,this.tablaPedido));
-        this.botonRealizarPedido.addActionListener(new ListenerBotonesPedido(this.tablaPedido,this.listaProvedores));
+        this.botonRealizarPedido.addActionListener(new ListenerBotonesPedido(this.tablaPedido,this.listaProvedores,this.precioPedido,this.user));
         this.botonEliminarPedido.addActionListener(new ListenerBotonesPedido());
         this.botonLlamarModificacion.addActionListener(new ListenerBotonesPedido());
     }

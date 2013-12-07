@@ -46,4 +46,20 @@ public class UsuarioDB {
         }
         return tipo;
     }
+    
+    public static int getIdUser(String user){
+        int id=0;
+        Connection conexion=ConexionDB.conexion();
+        try{
+            Statement st=conexion.createStatement();
+            String sql="Select idUsuario from usuario where user='"+user+"';";
+            ResultSet result=st.executeQuery(sql);
+            while(result.next()){
+                id=result.getInt(1);
+            }
+        }catch(Exception e){
+            System.out.println("Error pDB "+e);
+        }
+        return id;
+    }
 }
