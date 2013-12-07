@@ -4,6 +4,7 @@ package Vista;
 import Controlador.ListenerBotonesAlmacen;
 import Controlador.ListenerBotonesInicio;
 import Controlador.ListenerBotonesPedido;
+import Modelo.PedidoDB;
 import Modelo.ProductoDB;
 import Modelo.ProveedoresDB;
 import Modelo.UsuarioDB;
@@ -43,7 +44,7 @@ public class Inicio extends javax.swing.JFrame {
         ModeloTablaPedidos modeloPedido=new ModeloTablaPedidos(new ArrayList());
         this.tablaPedido.setModel(modeloPedido);
         
-        ModeloTablaEliminarPedido modeloEliminarPedido=new ModeloTablaEliminarPedido(new ArrayList());
+        ModeloTablaEliminarPedido modeloEliminarPedido=new ModeloTablaEliminarPedido(PedidoDB.mostrarPedidos());
         this.tablaMostrarPedido.setModel(modeloEliminarPedido);
         
         ModeloTablaVenta modeloVenta = new ModeloTablaVenta(new ArrayList ());
@@ -66,7 +67,9 @@ public class Inicio extends javax.swing.JFrame {
         this.botonAnadirElementoPedido.addActionListener(new ListenerBotonesPedido(this));
         this.botonBorrarElementoPedido.addActionListener(new ListenerBotonesPedido(this,this.tablaPedido));
         this.botonRealizarPedido.addActionListener(new ListenerBotonesPedido(this.tablaPedido,this.listaProvedores,this.precioPedido,this.user));
-        this.botonEliminarPedido.addActionListener(new ListenerBotonesPedido());
+        this.botonLimpiarPedido.addActionListener(new ListenerBotonesPedido(this.tablaPedido));
+        this.botonActualizarPedido.addActionListener(new ListenerBotonesPedido(this.tablaMostrarPedido));
+        this.botonEliminarPedido.addActionListener(new ListenerBotonesPedido(this.tablaMostrarPedido));
         this.botonLlamarModificacion.addActionListener(new ListenerBotonesPedido());
     }
     
@@ -144,11 +147,13 @@ public class Inicio extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         listaProvedores = new javax.swing.JList();
         jLabel13 = new javax.swing.JLabel();
+        botonLimpiarPedido = new javax.swing.JButton();
         jPanelMostrar = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaMostrarPedido = new javax.swing.JTable();
         botonEliminarPedido = new javax.swing.JButton();
         botonLlamarModificacion = new javax.swing.JButton();
+        botonActualizarPedido = new javax.swing.JButton();
         jPanelAlmacen = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAlmacen = new javax.swing.JTable();
@@ -456,6 +461,9 @@ public class Inicio extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setText("Lista Proveedores:");
 
+        botonLimpiarPedido.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        botonLimpiarPedido.setText("Limpiar");
+
         javax.swing.GroupLayout jPanelNuevoPedidoLayout = new javax.swing.GroupLayout(jPanelNuevoPedido);
         jPanelNuevoPedido.setLayout(jPanelNuevoPedidoLayout);
         jPanelNuevoPedidoLayout.setHorizontalGroup(
@@ -463,29 +471,24 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(jPanelNuevoPedidoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelNuevoPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNuevoPedidoLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                        .addComponent(precioPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelNuevoPedidoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanelNuevoPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNuevoPedidoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanelNuevoPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonBorrarElementoPedido)
-                            .addComponent(botonAnadirElementoPedido))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNuevoPedidoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonRealizarPedido)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNuevoPedidoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                        .addComponent(precioPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                            .addComponent(jLabel13)
+                            .addComponent(botonRealizarPedido)
+                            .addGroup(jPanelNuevoPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(botonBorrarElementoPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonAnadirElementoPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonLimpiarPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanelNuevoPedidoLayout.setVerticalGroup(
             jPanelNuevoPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -501,10 +504,12 @@ public class Inicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonAnadirElementoPedido)
                         .addGap(18, 18, 18)
+                        .addComponent(botonLimpiarPedido)
+                        .addGap(18, 18, 18)
                         .addComponent(botonBorrarElementoPedido)
                         .addGap(18, 18, 18)
                         .addComponent(botonRealizarPedido)
-                        .addGap(79, 79, 79)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanelNuevoPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(precioPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -527,9 +532,19 @@ public class Inicio extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(tablaMostrarPedido);
 
+        botonEliminarPedido.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         botonEliminarPedido.setText("Eliminar");
+        botonEliminarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarPedidoActionPerformed(evt);
+            }
+        });
 
+        botonLlamarModificacion.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         botonLlamarModificacion.setText("Modificar");
+
+        botonActualizarPedido.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        botonActualizarPedido.setText("Actualizar");
 
         javax.swing.GroupLayout jPanelMostrarLayout = new javax.swing.GroupLayout(jPanelMostrar);
         jPanelMostrar.setLayout(jPanelMostrarLayout);
@@ -538,11 +553,12 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(jPanelMostrarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
-                .addGroup(jPanelMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonEliminarPedido)
-                    .addComponent(botonLlamarModificacion))
-                .addGap(70, 70, 70))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addGroup(jPanelMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonActualizarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonEliminarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonLlamarModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
         jPanelMostrarLayout.setVerticalGroup(
             jPanelMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -551,7 +567,9 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanelMostrarLayout.createSequentialGroup()
-                .addGap(127, 127, 127)
+                .addGap(141, 141, 141)
+                .addComponent(botonActualizarPedido)
+                .addGap(18, 18, 18)
                 .addComponent(botonEliminarPedido)
                 .addGap(18, 18, 18)
                 .addComponent(botonLlamarModificacion)
@@ -610,6 +628,11 @@ public class Inicio extends javax.swing.JFrame {
 
         botonAnadirAlmacen.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         botonAnadirAlmacen.setText("Añadir");
+        botonAnadirAlmacen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAnadirAlmacenActionPerformed(evt);
+            }
+        });
 
         botonActualizarAlmacen.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         botonActualizarAlmacen.setText("Actualizar");
@@ -803,6 +826,14 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonAnadirElementoPedidoActionPerformed
 
+    private void botonEliminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarPedidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminarPedidoActionPerformed
+
+    private void botonAnadirAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnadirAlmacenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAnadirAlmacenActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -838,11 +869,13 @@ public class Inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton almacen;
     private javax.swing.JButton botonActualizarAlmacen;
+    private javax.swing.JButton botonActualizarPedido;
     private javax.swing.JButton botonAnadirAlmacen;
     private javax.swing.JButton botonAnadirElementoPedido;
     private javax.swing.JButton botonBorrarElementoPedido;
     private javax.swing.JButton botonBuscarAlmacen;
     private javax.swing.JButton botonEliminarPedido;
+    private javax.swing.JButton botonLimpiarPedido;
     private javax.swing.JButton botonLlamarModificacion;
     private javax.swing.JButton botonRealizarPedido;
     private javax.swing.JButton estadistica;
@@ -932,6 +965,8 @@ public class Inicio extends javax.swing.JFrame {
         this.botonRealizarPedido.setActionCommand("realizarPedido");
         this.botonEliminarPedido.setActionCommand("eliminarPedido");
         this.botonLlamarModificacion.setActionCommand("modificacionPedido");
+        this.botonActualizarPedido.setActionCommand("actualizarPedido");
+        this.botonLimpiarPedido.setActionCommand("limpiarPedido");
     }
 
     private void comprobarTipo(String usuario) {

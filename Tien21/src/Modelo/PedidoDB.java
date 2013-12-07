@@ -50,4 +50,35 @@ public class PedidoDB {
         }
         return id;
     }
+    
+    public static ArrayList mostrarPedidos(){
+        ArrayList<Object> lista = new ArrayList<Object>();
+        Connection conexion=ConexionDB.conexion();
+        try{
+            Statement st=conexion.createStatement();
+            String sql="Select * from pedido";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                Object[] linea = new Object[3];
+                linea[0]=rs.getString(2);
+                linea[1]=rs.getString(3);
+                linea[2]=rs.getString(4);
+                lista.add(linea);
+            }
+        }catch(Exception e){
+            System.out.println("Error");
+        }
+        return lista;
+    }
+    
+    public static void eliminarPedido(String codigo){
+        Connection conexion=ConexionDB.conexion();
+        try{
+            Statement st=conexion.createStatement();
+            String sql="DELETE FROM pedido WHERE codigo="+codigo;
+            st.executeUpdate(sql);
+        }catch(Exception e){
+            System.out.println("Error");
+        }
+    }
 }

@@ -9,6 +9,7 @@ import Modelo.UsuarioDB;
 import Vista.AñadirPedido;
 import Vista.Inicio;
 import Vista.ModeloListaProvedores;
+import Vista.ModeloTablaEliminarPedido;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTable;
@@ -35,6 +36,10 @@ public class ListenerBotonesPedido implements ActionListener {
         this.inicio=aThis;
     }
     
+    public ListenerBotonesPedido(JTable tabla) {
+        this.tabla=tabla;
+    }
+    
     public ListenerBotonesPedido(JTable tabla,JList lista,JLabel precio,String user) {
         this.tabla=tabla;
         this.lista=lista;
@@ -55,19 +60,28 @@ public class ListenerBotonesPedido implements ActionListener {
                 ventana.setVisible(true);
                 break;
             case "borrarElementoPedido":   
-                ((ModeloTablaPedidos)tabla.getModel()).borrarFila(tabla.getSelectedRow());
-                inicio.calcularPrecioPedido(tabla);
+                ((ModeloTablaPedidos)this.tabla.getModel()).borrarFila(tabla.getSelectedRow());
+                inicio.calcularPrecioPedido(this.tabla);
                 break;
             case "realizarPedido":
                 this.crearPedido();
                 this.crearLineasPedido();
                 break;
+            case "limpiarPedido":
+                ModeloTablaPedidos modeloPedido=new ModeloTablaPedidos(new ArrayList());
+                this.tabla.setModel(modeloPedido);
+                break;
             case "eliminarPedido":
-
+                PedidoDB.eliminarPedido((String) ((ModeloTablaEliminarPedido)this.tabla.getModel()).getValueAt(this.tabla.getSelectedRow(), 0));
+                ((ModeloTablaEliminarPedido)this.tabla.getModel()).borrarFila(this.tabla.getSelectedRow());
                 break;
             case "modificacionPedido":
 
                 break;
+            case "actualizarPedido":
+                ModeloTablaEliminarPedido modeloEliminarPedido=new ModeloTablaEliminarPedido(PedidoDB.mostrarPedidos());
+                this.tabla.setModel(modeloEliminarPedido);
+                break;              
         }
     }  
     
