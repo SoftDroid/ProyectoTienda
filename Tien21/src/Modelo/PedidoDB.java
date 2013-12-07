@@ -75,10 +75,17 @@ public class PedidoDB {
         Connection conexion=ConexionDB.conexion();
         try{
             Statement st=conexion.createStatement();
-            String sql="DELETE FROM pedido WHERE codigo="+codigo;
+            String sql="Select idPedido FROM pedido WHERE codigo="+codigo;
+            ResultSet rs=st.executeQuery(sql);
+            int idPedido=0;
+            while(rs.next()){
+                idPedido = rs.getInt(1);
+            }
+            LineaPedidoDB.eliminarLinea(idPedido);
+            sql="DELETE FROM pedido WHERE codigo="+codigo;
             st.executeUpdate(sql);
         }catch(Exception e){
-            System.out.println("Error");
+            System.out.println("Error eliminar pedido "+ e);
         }
     }
 }

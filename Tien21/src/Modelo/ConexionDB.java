@@ -17,7 +17,7 @@ public class ConexionDB {
             Class.forName("com.mysql.jdbc.Driver");
             String servidor="jdbc:mysql://localhost/tien21";
             String usuarioDB="root";
-            String passwordDB="erintiacs";
+            String passwordDB="";
             conexion=(Connection)DriverManager.getConnection(servidor,usuarioDB,passwordDB);
             
         }catch(ClassNotFoundException ex)

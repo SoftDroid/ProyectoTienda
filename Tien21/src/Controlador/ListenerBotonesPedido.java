@@ -71,7 +71,7 @@ public class ListenerBotonesPedido implements ActionListener {
                 ModeloTablaPedidos modeloPedido=new ModeloTablaPedidos(new ArrayList());
                 this.tabla.setModel(modeloPedido);
                 break;
-            case "eliminarPedido":
+            case "eliminarPedido":  
                 PedidoDB.eliminarPedido((String) ((ModeloTablaEliminarPedido)this.tabla.getModel()).getValueAt(this.tabla.getSelectedRow(), 0));
                 ((ModeloTablaEliminarPedido)this.tabla.getModel()).borrarFila(this.tabla.getSelectedRow());
                 break;
