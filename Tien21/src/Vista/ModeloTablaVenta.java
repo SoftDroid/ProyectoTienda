@@ -1,4 +1,3 @@
-
 package Vista;
 
 import java.util.ArrayList;
@@ -16,11 +15,8 @@ public class ModeloTablaVenta extends AbstractTableModel {
      public ModeloTablaVenta(ArrayList list){
             
          this.datos = list;
+         }
      
-                                            }
-      public String getColumnName(int col){
-        return columnas[col].toString();
-    }
      
     @Override
     public int getRowCount() {
@@ -29,40 +25,49 @@ public class ModeloTablaVenta extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-       return columnas.length;
+        return columnas.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-       Object[] element = (Object[]) datos.get(rowIndex);
-        return element[columnIndex];
+        Object [] elemento=(Object[])datos.get(rowIndex);
+        return elemento[columnIndex];
     }
     
-     public Class getColumnClass(int columIndex){
-        return types[columIndex];
+    @Override
+    public String getColumnName(int col){
+        return columnas[col];
     }
     
-    public boolean isCellEditable(int row, int col) { 
-        boolean editar = false;
-         if(col==columnas.length-1)
-            editar=true;
-         
-    return editar;}
+    @Override
+    public Class getColumnClass(int col){
+        return types[col];
+    }
     
-    public void setValueAt(Object value,int row,int col){
+    @Override
+    public void setValueAt(Object elemento,int row,int col){
         Object[]fila=(Object[]) datos.get(row);
-        fila[col]=value;
+        fila[col]=elemento;
         fireTableCellUpdated(row,col);
     }
     
-    public void addRow(Object [] fila){
+    public void anadirFila(Object [] fila){
         datos.add(fila);
         fireTableDataChanged();
     }
     
-    public void removeRow (int fila){
+    public void borrarFila(int fila){
         datos.remove(fila);
         fireTableDataChanged();
     }
     
+    public boolean inCellEditable(int row, int col){
+        boolean editable;
+        if(col==columnas.length-1)
+            editable=true;
+        else
+            editable=false;
+
+        return editable;
+    }
 }

@@ -339,7 +339,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTabbedPane1" alignment="0" pref="1085" max="32767" attributes="0"/>
+                              <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -402,9 +402,9 @@
                                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="anadirVentas" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="borrarVentas" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel7" min="-2" pref="96" max="-2" attributes="0"/>
@@ -420,7 +420,7 @@
                                           <Component id="jLabel9" min="-2" pref="91" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="realizarVenta" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel11" min="-2" pref="59" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -436,8 +436,8 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="anadirVentas" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="borrarVentas" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
@@ -455,7 +455,7 @@
                                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="realizarVenta" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jScrollPane2" min="-2" pref="552" max="-2" attributes="0"/>
                                   </Group>
@@ -486,14 +486,14 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="javax.swing.JButton" name="jButton1">
+                        <Component class="javax.swing.JButton" name="anadirVentas">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField2">
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton2">
+                        <Component class="javax.swing.JButton" name="borrarVentas">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Borrar"/>
                           </Properties>
@@ -523,7 +523,7 @@
                             <Property name="text" type="java.lang.String" value="jLabel11"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton3">
+                        <Component class="javax.swing.JButton" name="realizarVenta">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Realizar Venta"/>
                           </Properties>
@@ -890,24 +890,26 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="1085" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane1" alignment="0" pref="1085" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="454" max="32767" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="454" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="botonBuscarAlmacen" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="288" max="32767" attributes="0"/>
+                                  <Component id="botonAnadirAlmacen" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="217" max="32767" attributes="0"/>
+                                  <Component id="botonActualizarAlmacen" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="464" max="32767" attributes="0"/>
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="464" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="botonBuscarAlmacen" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="288" max="32767" attributes="0"/>
-                          <Component id="botonAnadirAlmacen" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="217" max="32767" attributes="0"/>
-                          <Component id="botonActualizarAlmacen" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
