@@ -14,7 +14,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTable;
 import Vista.ModeloTablaPedidos;
+import Vista.ModificarPedido;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -59,24 +61,35 @@ public class ListenerBotonesPedido implements ActionListener {
                 AñadirPedido ventana=new AñadirPedido(null, true,inicio);
                 ventana.setVisible(true);
                 break;
-            case "borrarElementoPedido":   
+            case "borrarElementoPedido":  
+                if(this.tabla.getSelectedRow()!=-1){
                 ((ModeloTablaPedidos)this.tabla.getModel()).borrarFila(tabla.getSelectedRow());
                 inicio.calcularPrecioPedido(this.tabla);
+                }
                 break;
             case "realizarPedido":
+                if(this.lista.getSelectedIndex()!=-1){
                 this.crearPedido();
                 this.crearLineasPedido();
+                }
                 break;
             case "limpiarPedido":
                 ModeloTablaPedidos modeloPedido=new ModeloTablaPedidos(new ArrayList());
                 this.tabla.setModel(modeloPedido);
                 break;
-            case "eliminarPedido":  
+            case "eliminarPedido":
+                if(this.tabla.getSelectedRow()!=-1){
                 PedidoDB.eliminarPedido((String) ((ModeloTablaEliminarPedido)this.tabla.getModel()).getValueAt(this.tabla.getSelectedRow(), 0));
                 ((ModeloTablaEliminarPedido)this.tabla.getModel()).borrarFila(this.tabla.getSelectedRow());
+                }
                 break;
             case "modificacionPedido":
-
+                if(this.tabla.getSelectedRow()!=-1){
+                this.fecha=((String) ((ModeloTablaEliminarPedido)this.tabla.getModel()).getValueAt(this.tabla.getSelectedRow(), 1));
+                int id =PedidoDB.getId(fecha);
+                ModificarPedido vent= new ModificarPedido(inicio, true,id);
+                vent.setVisible(true);
+                }
                 break;
             case "actualizarPedido":
                 ModeloTablaEliminarPedido modeloEliminarPedido=new ModeloTablaEliminarPedido(PedidoDB.mostrarPedidos());
@@ -100,7 +113,11 @@ public class ListenerBotonesPedido implements ActionListener {
         Date date = new Date();
         this.fecha=dateToMySQLDate(date);
         int idUser=UsuarioDB.getIdUser(user);
-        String sql="INSERT INTO pedido(Codigo, FechaPedido, PrecioTotal, Usuario_idUsuario, FechaEntrega) values ('"+codigo+"','"+this.fecha+"','"+this.precio.getText().trim()+"','"+idUser+"','"+this.fecha+"')";
+        Calendar cal =Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE,7);
+        String fechaEntrega=dateToMySQLDate(cal);
+        String sql="INSERT INTO pedido(Codigo, FechaPedido, PrecioTotal, Usuario_idUsuario, FechaEntrega) values ('"+codigo+"','"+this.fecha+"','"+this.precio.getText().trim()+"','"+idUser+"','"+fechaEntrega+"')";
         PedidoDB.insertarPedido(sql);
     }
     
@@ -127,6 +144,11 @@ public class ListenerBotonesPedido implements ActionListener {
         return sdf.format(fecha);
     }
     
+    private String dateToMySQLDate(Calendar cal) {
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(cal.getTime());
+    }
+    
     public String codigo(){
 	String s="";
 		for(int cont=0;cont<5 ;cont++){
@@ -139,5 +161,7 @@ public class ListenerBotonesPedido implements ActionListener {
     public char numero(){
 	return (char)((Math.random()*10)+48);
     }
+
+    
 
 }

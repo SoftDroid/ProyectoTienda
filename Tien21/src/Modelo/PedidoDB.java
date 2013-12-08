@@ -12,7 +12,6 @@ public class PedidoDB {
         Connection conexion=ConexionDB.conexion();
         try{
             Statement st=conexion.createStatement();
-            System.out.println(sql);
             st.executeUpdate(sql);
         }catch(Exception e){
             System.out.println("Error insertar pedido");
@@ -87,5 +86,25 @@ public class PedidoDB {
         }catch(Exception e){
             System.out.println("Error eliminar pedido "+ e);
         }
+    }
+
+    public static String [] getDatosPedido(int id) {
+        Connection conexion=ConexionDB.conexion();
+        String [] datos = new String [5];
+        try{
+            Statement st=conexion.createStatement();
+            String sql="Select p.codigo,p.FechaPedido, p.PrecioTotal, p.FechaEntrega, u.user FROM pedido p, usuario u WHERE p.idPedido="+id+" and p.Usuario_idUsuario=u.idUsuario";
+            ResultSet rs=st.executeQuery(sql);
+            while(rs.next()){
+                datos [0]=rs.getString(1);
+                datos [1]=rs.getString(2);
+                datos [2]=rs.getString(3);
+                datos [3]=rs.getString(4);
+                datos [4]=rs.getString(5);
+            }
+        }catch(Exception e){
+            System.out.println("Error eliminar pedido "+ e);
+        }
+        return datos;
     }
 }

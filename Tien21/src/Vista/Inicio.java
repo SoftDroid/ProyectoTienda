@@ -70,7 +70,7 @@ public class Inicio extends javax.swing.JFrame {
         this.botonLimpiarPedido.addActionListener(new ListenerBotonesPedido(this.tablaPedido));
         this.botonActualizarPedido.addActionListener(new ListenerBotonesPedido(this.tablaMostrarPedido));
         this.botonEliminarPedido.addActionListener(new ListenerBotonesPedido(this.tablaMostrarPedido));
-        this.botonLlamarModificacion.addActionListener(new ListenerBotonesPedido());
+        this.botonLlamarModificacion.addActionListener(new ListenerBotonesPedido(this.tablaMostrarPedido));
     }
     
     public void inicializarMenuBar(){
@@ -650,11 +650,11 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addContainerGap(464, Short.MAX_VALUE))
             .addGroup(jPanelAlmacenLayout.createSequentialGroup()
-                .addGap(228, 228, 228)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonBuscarAlmacen)
-                .addGap(129, 129, 129)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE)
                 .addComponent(botonAnadirAlmacen)
-                .addGap(102, 102, 102)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
                 .addComponent(botonActualizarAlmacen)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
