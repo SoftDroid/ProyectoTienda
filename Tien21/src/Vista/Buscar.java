@@ -6,6 +6,7 @@ import Controlador.ListenerBotonesInicio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JTable;
 
 public class Buscar extends javax.swing.JDialog {
 
@@ -20,6 +21,7 @@ public class Buscar extends javax.swing.JDialog {
         this.jButtonBuscarCodigo.addActionListener(new ListenerBotonesBuscar(campoCodigo,frame,this));
  
     }
+
     
     public Buscar(java.awt.Frame parent, boolean modal, AñadirPedido ventana) {
         super(parent, modal);

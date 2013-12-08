@@ -87,7 +87,7 @@ public class ListenerBotonesPedido implements ActionListener {
                 if(this.tabla.getSelectedRow()!=-1){
                 this.fecha=((String) ((ModeloTablaEliminarPedido)this.tabla.getModel()).getValueAt(this.tabla.getSelectedRow(), 1));
                 int id =PedidoDB.getId(fecha);
-                ModificarPedido vent= new ModificarPedido(inicio, true,id);
+                ModificarPedido vent= new ModificarPedido(inicio, true,id, this.tabla);
                 vent.setVisible(true);
                 }
                 break;

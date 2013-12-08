@@ -7,6 +7,7 @@ import Vista.Inicio;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 public class ListenerBotonesBuscar implements ActionListener {
@@ -29,6 +30,7 @@ public class ListenerBotonesBuscar implements ActionListener {
         this.anadirPedido=padre;
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String s=e.getActionCommand();
@@ -38,6 +40,9 @@ public class ListenerBotonesBuscar implements ActionListener {
                 if(inicio!=null){
                     inicio.buscarAlmacen("nombre", valor);
                     ventana.dispose();
+                }else if(anadirPedido!=null){
+                    anadirPedido.buscarElementoPedido("nombre", valor);
+                    ventana.dispose();
                 }else {
                     anadirPedido.buscarElementoPedido("nombre", valor);
                     ventana.dispose();
@@ -46,7 +51,10 @@ public class ListenerBotonesBuscar implements ActionListener {
             case "buscarCodigo":
                 if(inicio!=null){
                     inicio.buscarAlmacen("codigo", valor);
-                ventana.dispose();
+                    ventana.dispose();
+                }else if(anadirPedido!=null){
+                    anadirPedido.buscarElementoPedido("codigo", valor);
+                    ventana.dispose();
                 }else {
                     anadirPedido.buscarElementoPedido("codigo", valor);
                     ventana.dispose();

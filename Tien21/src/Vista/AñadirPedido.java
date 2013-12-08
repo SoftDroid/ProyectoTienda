@@ -4,12 +4,28 @@ package Vista;
 import Controlador.ListenerAñadirPedido;
 import Modelo.ProductoDB;
 import java.util.ArrayList;
+import javax.swing.JTable;
 
 public class AñadirPedido extends javax.swing.JDialog {
 
     public AñadirPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+    
+    public AñadirPedido(java.awt.Frame parent, boolean modal,int id) {//contructor añadir linea modificacion
+        super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);//coloca ventana en el centro
+        
+        ModeloTablaProductos modeloTabla=new ModeloTablaProductos(new ArrayList ());
+        this.tablaAnadirPedido.setModel(modeloTabla);
+        
+        Buscar ventanaBuscar = new Buscar(null, true,this);
+        ventanaBuscar.setVisible(true);
+        
+        this.anadirAlPedido.setActionCommand("añadirModificacion");
+        this.anadirAlPedido.addActionListener(new ListenerAñadirPedido(this.tablaAnadirPedido,this, id));
     }
 
     public AñadirPedido(java.awt.Frame parent, boolean modal, Inicio inicio) {
@@ -22,7 +38,8 @@ public class AñadirPedido extends javax.swing.JDialog {
         
         Buscar buscarVentana=new Buscar(null, true, this);
         buscarVentana.setVisible(true);
-
+        
+        this.anadirAlPedido.setActionCommand("añadirPedido");
         this.anadirAlPedido.addActionListener(new ListenerAñadirPedido(inicio, tablaAnadirPedido,this));
     }
     

@@ -107,4 +107,33 @@ public class PedidoDB {
         }
         return datos;
     }
+
+    public static void setPrecio(int id, double precioTotal) {
+        Connection conexion=ConexionDB.conexion();
+        try{
+            Statement st=conexion.createStatement();
+            String sql="UPDATE pedido SET PrecioTotal="+precioTotal+" WHERE idPedido="+id;
+            st.executeUpdate(sql);
+        }catch(Exception e){
+            System.out.println("Error set cantidad Linea");
+        }
+        
+    }
+
+    public static double getPrecio(int id) {
+        Connection conexion=ConexionDB.conexion();
+        double precio=0;
+        try{
+            Statement st=conexion.createStatement();
+            String sql="SELECT precioTotal FROM pedido WHERE  idPedido="+id;
+            ResultSet rs=st.executeQuery(sql);
+            while(rs.next()){
+                precio=rs.getDouble(1);
+            }
+
+        }catch(Exception e){
+            System.out.println("Error eliminar pedido "+ e);
+        }
+        return precio;
+    }
 }

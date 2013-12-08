@@ -2,8 +2,12 @@
 package Vista;
 
 import Controlador.ListenerAñadirPedido;
+import Modelo.LineaPedidoDB;
+import Modelo.PedidoDB;
+import Modelo.ProductoDB;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JTable;
 
 
 public class Cantidad extends javax.swing.JDialog {
@@ -11,6 +15,40 @@ public class Cantidad extends javax.swing.JDialog {
     public Cantidad(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+    
+    
+    
+    public Cantidad(java.awt.Frame parent, boolean modal, final JTable tabla, final int id) {
+        super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);//coloca ventana en el centro
+        
+        this.jButton1.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(tabla.getSelectedRow()!=-1){
+                    String datos[]=new String [3];
+                    datos[0]=(String) ((ModeloTablaPedidos)tabla.getModel()).getValueAt(tabla.getSelectedRow(), 0);
+                    datos[1]=(String) ((ModeloTablaPedidos)tabla.getModel()).getValueAt(tabla.getSelectedRow(), 1);
+                    datos[2]=(String) ((ModeloTablaPedidos)tabla.getModel()).getValueAt(tabla.getSelectedRow(), 2); 
+                    int idProducto = ProductoDB.getId( datos[0], datos[1], datos[2]);
+                    double precioUnidad=LineaPedidoDB.getPrecioUnidad(id, idProducto);
+                    int nuevaCant=Integer.parseInt(jTextField1.getText());
+                    double nuevoPrecio=nuevaCant*precioUnidad;
+                    LineaPedidoDB.setCantidad(nuevaCant, nuevoPrecio,id, idProducto);
+                    double precioTotal=0;
+                    ModeloTablaPedidos modeloPedido=new ModeloTablaPedidos(LineaPedidoDB.getLineasPedido(id));
+                    tabla.setModel(modeloPedido);
+                    for(int cont=0;cont<((ModeloTablaPedidos)tabla.getModel()).getRowCount();cont++){
+                        precioTotal+=(double)((ModeloTablaPedidos)tabla.getModel()).getValueAt(cont, 4);
+                    }
+                    PedidoDB.setPrecio(id,precioTotal);
+                }
+                dispose();
+            }
+        });
     }
 
     public Cantidad(java.awt.Frame parent, boolean modal, final ListenerAñadirPedido aThis) {
@@ -23,6 +61,21 @@ public class Cantidad extends javax.swing.JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 aThis.devolverElemento(jTextField1);
+                dispose();
+            }
+        });
+    }
+    
+    public Cantidad(java.awt.Frame parent, boolean modal, final ListenerAñadirPedido aThis, int id) {
+        super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);//coloca ventana en el centro
+        
+        this.jButton1.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                aThis.devolverElementoModificacion(jTextField1);
                 dispose();
             }
         });

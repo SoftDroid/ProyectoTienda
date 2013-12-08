@@ -1,9 +1,11 @@
 
 package Vista;
 
+import Controlador.ListenerBotonesModificar;
 import Modelo.LineaPedidoDB;
 import Modelo.PedidoDB;
 import java.util.ArrayList;
+import javax.swing.JTable;
 
 public class ModificarPedido extends javax.swing.JDialog {
 
@@ -12,14 +14,14 @@ public class ModificarPedido extends javax.swing.JDialog {
         initComponents();
     }
 
-    public ModificarPedido(java.awt.Frame parent, boolean modal, int id) {
+    public ModificarPedido(java.awt.Frame parent, boolean modal, int id, JTable tablaInicio) {
         super(parent, modal);
         initComponents();
         
         setLocationRelativeTo(null);//coloca ventana en el centro
         
         ModeloTablaPedidos modeloPedido=new ModeloTablaPedidos(LineaPedidoDB.getLineasPedido(id));
-        this.tablaLineaPedido.setModel(modeloPedido);
+        this.tablaModificarPedido.setModel(modeloPedido);
         
         String [] datos =PedidoDB.getDatosPedido(id);
         
@@ -29,6 +31,14 @@ public class ModificarPedido extends javax.swing.JDialog {
         this.precio.setText(datos[2]);
         this.usuario.setText(datos[4]);
         this.provedor.setText(LineaPedidoDB.getProveedor(id));
+        
+        this.anadirProducto.setActionCommand("añadirProducto");
+        this.borrarProducto.setActionCommand("borrarProducto");
+        this.modificarCantidad.setActionCommand("modificarProducto");
+        
+        this.anadirProducto.addActionListener(new ListenerBotonesModificar(tablaModificarPedido, id, this.precio, tablaInicio));
+        this.borrarProducto.addActionListener(new ListenerBotonesModificar(tablaModificarPedido, id,this.precio, tablaInicio));
+        this.modificarCantidad.addActionListener(new ListenerBotonesModificar(tablaModificarPedido, id,this.precio, tablaInicio));
     }
 
     /**
@@ -47,7 +57,7 @@ public class ModificarPedido extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaLineaPedido = new javax.swing.JTable();
+        tablaModificarPedido = new javax.swing.JTable();
         codigo = new javax.swing.JLabel();
         usuario = new javax.swing.JLabel();
         fechaPedido = new javax.swing.JLabel();
@@ -55,6 +65,9 @@ public class ModificarPedido extends javax.swing.JDialog {
         precio = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         provedor = new javax.swing.JLabel();
+        anadirProducto = new javax.swing.JButton();
+        borrarProducto = new javax.swing.JButton();
+        modificarCantidad = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -73,7 +86,7 @@ public class ModificarPedido extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Precio:");
 
-        tablaLineaPedido.setModel(new javax.swing.table.DefaultTableModel(
+        tablaModificarPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -84,7 +97,7 @@ public class ModificarPedido extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tablaLineaPedido);
+        jScrollPane1.setViewportView(tablaModificarPedido);
 
         codigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -101,32 +114,49 @@ public class ModificarPedido extends javax.swing.JDialog {
 
         provedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        anadirProducto.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        anadirProducto.setText("Añadir Producto");
+
+        borrarProducto.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        borrarProducto.setText("Borrar Producto");
+
+        modificarCantidad.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        modificarCantidad.setText("Modificar Cantidad");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(precio)
-                            .addComponent(fechaEntrega)
-                            .addComponent(fechaPedido)
-                            .addComponent(usuario)
-                            .addComponent(codigo)
-                            .addComponent(provedor)))
-                    .addComponent(jLabel6))
-                .addGap(196, 196, 196))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(37, 37, 37)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(precio)
+                                    .addComponent(fechaEntrega)
+                                    .addComponent(fechaPedido)
+                                    .addComponent(usuario)
+                                    .addComponent(codigo)
+                                    .addComponent(provedor)))
+                            .addComponent(jLabel6)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(modificarCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(borrarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(anadirProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,10 +185,16 @@ public class ModificarPedido extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(provedor))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addComponent(anadirProducto)
+                .addGap(18, 18, 18)
+                .addComponent(borrarProducto)
+                .addGap(18, 18, 18)
+                .addComponent(modificarCantidad)
+                .addGap(114, 114, 114))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
 
@@ -166,9 +202,7 @@ public class ModificarPedido extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 100, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,6 +256,8 @@ public class ModificarPedido extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton anadirProducto;
+    private javax.swing.JButton borrarProducto;
     private javax.swing.JLabel codigo;
     private javax.swing.JLabel fechaEntrega;
     private javax.swing.JLabel fechaPedido;
@@ -233,9 +269,10 @@ public class ModificarPedido extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton modificarCantidad;
     private javax.swing.JLabel precio;
     private javax.swing.JLabel provedor;
-    private javax.swing.JTable tablaLineaPedido;
+    private javax.swing.JTable tablaModificarPedido;
     private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 }
