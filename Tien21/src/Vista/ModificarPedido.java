@@ -3,6 +3,9 @@ package Vista;
 
 import Controlador.ListenerBotonesModificar;
 import Modelo.LineaPedidoDB;
+import Modelo.LineaPedidoDB;
+import Modelo.ModeloTablaPedidos;
+import Modelo.PedidoDB;
 import Modelo.PedidoDB;
 import java.util.ArrayList;
 import javax.swing.JTable;

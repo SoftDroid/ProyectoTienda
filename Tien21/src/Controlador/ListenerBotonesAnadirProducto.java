@@ -4,7 +4,9 @@ package Controlador;
 import Modelo.ColorDB;
 import Modelo.FamiliaDB;
 import Modelo.OfertaDB;
+import Modelo.PedidoDB;
 import Modelo.ProductoDB;
+import Modelo.ProveedoresDB;
 import Modelo.SubFamiliaDB;
 import Modelo.TallaDB;
 import Modelo.TemporadaDB;
@@ -15,13 +17,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JTextField;
 
 
 public class ListenerBotonesAnadirProducto implements ActionListener {
     private AñadirProducto ventana;
     private JTextField nombre;
-    private JTextField codigo;
+    private String codigo;
     private JTextField stock;
     private JTextField precioP;
     private JTextField precioV;
@@ -32,15 +35,15 @@ public class ListenerBotonesAnadirProducto implements ActionListener {
     private JCheckBox checkOferta;
     private ArrayList<Object> listCheckColores;
     private ArrayList<Object> listCheckTallas;
+    private JList listaProveedores;
     
     public ListenerBotonesAnadirProducto(AñadirProducto aThis) {
         this.ventana=aThis;
     }
 
-    public ListenerBotonesAnadirProducto(AñadirProducto aThis, JTextField nombreAnadirProducto, JTextField codigoAnadirProducto, JTextField stockAnadirProducto, JTextField precioPAnadirProducto, JTextField precioVAnadirProducto, JComboBox temporadaAnadirProducto, JComboBox familiaAnadirProducto, JComboBox subfaAnadirProducto, JCheckBox jCheckBoxOferta, JComboBox ofertaAnadirProducto, ArrayList<Object> listColores, ArrayList<Object> listTallas) {
+    public ListenerBotonesAnadirProducto(AñadirProducto aThis, JTextField nombreAnadirProducto, JTextField stockAnadirProducto, JTextField precioPAnadirProducto, JTextField precioVAnadirProducto, JComboBox temporadaAnadirProducto, JComboBox familiaAnadirProducto, JComboBox subfaAnadirProducto, JCheckBox jCheckBoxOferta, JComboBox ofertaAnadirProducto, ArrayList<Object> listColores, ArrayList<Object> listTallas, JList listaProveedores) {
         this.ventana=aThis;
         this.nombre=nombreAnadirProducto;
-        this.codigo=codigoAnadirProducto;
         this.stock=stockAnadirProducto;
         this.precioP=precioPAnadirProducto;
         this.precioV=precioVAnadirProducto;
@@ -51,6 +54,7 @@ public class ListenerBotonesAnadirProducto implements ActionListener {
         this.checkOferta=jCheckBoxOferta;
         this.listCheckColores=listColores;
         this.listCheckTallas=listTallas;
+        this.listaProveedores=listaProveedores;
     }
 
     @Override
@@ -59,7 +63,6 @@ public class ListenerBotonesAnadirProducto implements ActionListener {
         switch(s){
             case "añadir":
                 String sNombre=this.nombre.getText().trim();
-                String sCodigo=this.codigo.getText().trim();
                 String sStock=this.stock.getText().trim();
                 String sPrecioP=this.precioP.getText().trim();
                 String sPrecioV=this.precioV.getText().trim();
@@ -67,6 +70,7 @@ public class ListenerBotonesAnadirProducto implements ActionListener {
                 String sFamilia=FamiliaDB.getId((String) this.familia.getSelectedItem());
                 String sSubFamilia=SubFamiliaDB.getId((String) this.subFamilia.getSelectedItem());
                 String sOferta;
+                String proveedor=(String) listaProveedores.getSelectedValue();
                 if(this.checkOferta.isSelected()){
                     sOferta=OfertaDB.getId((String) this.oferta.getSelectedItem());
                 }else{
@@ -88,7 +92,10 @@ public class ListenerBotonesAnadirProducto implements ActionListener {
                     String sColor=listColor.get(cont);
                     for(int aux=0;aux<listTalla.size();aux++){
                         String sTalla=listTalla.get(aux);
-                        String sql="INSERT INTO `producto` (`Nombre`, `Codigo`, `PrecioProveedor`, `PrecioVenta`, `Temporada_idTemporada`, `Color_idColor`, `Talla_idTalla`, `SubFamilia_idSubFamilia`, `Descatalogado`, `Stock`, `Oferta_idOferta`) VALUES ('"+sNombre+"', '"+sCodigo+"', '"+sPrecioP+"', '"+sPrecioV+"', '"+sTemporada+"', '"+sColor+"', '"+sTalla+"', '"+sSubFamilia+"', '0', '"+sStock+"', '"+sOferta+"')";
+                        this.codigo=generarCodigo();
+                        int idProveedor= ProveedoresDB.getId(proveedor);
+                        String sql="INSERT INTO `producto` (`Nombre`, `Codigo`, `PrecioProveedor`, `PrecioVenta`, `Temporada_idTemporada`, `Color_idColor`, `Talla_idTalla`, `SubFamilia_idSubFamilia`, `Descatalogado`, `Stock`, `Oferta_idOferta`, `Proveedor_idProveedor`) VALUES ('"+sNombre+"', '"+this.codigo+"', '"+sPrecioP+"', '"+sPrecioV+"', '"+sTemporada+"', '"+sColor+"', '"+sTalla+"', '"+sSubFamilia+"', '0', '"+sStock+"', '"+sOferta+"','"+idProveedor+"')";
+                        System.out.println(sql);
                         ProductoDB.insertar(sql);
                     }
                 }
@@ -96,6 +103,41 @@ public class ListenerBotonesAnadirProducto implements ActionListener {
                 ventana.dispose();
                 break;
         }
+    }
+
+    private String generarCodigo() {
+       boolean existe=false;
+       String newCodigo=null;
+       while(!existe){
+           newCodigo=this.codigo();
+           ArrayList<String> listaCodigos=ProductoDB.listaCodigo();
+           existe=true;
+           for(int cont=0;cont<listaCodigos.size();cont++){
+               if(newCodigo.equals(listaCodigos.get(cont)))
+                   existe=false;
+           }
+       }
+       return newCodigo;
+    }
+
+    private String codigo() {
+        String s="";
+		for(int cont=0;cont<6 ;cont++){
+			int num=(int)(Math.random()*2);
+			if(num==0){
+				s=s+mayusculas();
+			}else
+				s=s+numero();
+		}
+		return s;
+    }
+    
+    public char mayusculas(){
+	return (char)((Math.random()*26)+65);
+    }
+	
+    public char numero(){
+	return (char)((Math.random()*10)+48);
     }
     
 }

@@ -1,18 +1,23 @@
-
-package Vista;
+package Modelo;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-public class ModeloTablaEliminarPedido extends AbstractTableModel {
+
+public class ModeloTablaVenta extends AbstractTableModel {
+
     ArrayList datos = new ArrayList();
-    String [] nombreCol= new String[] {"Codigo","Fecha","Precio",};
-    Class [] type = new Class[]{java.lang.String.class,java.lang.Integer.class,java.lang.String.class};
-
-     public ModeloTablaEliminarPedido(ArrayList list){
-        this.datos=list;
-    }
-
+    String [] columnas = {"Nombre", "Precio", "Cantidad"};
+     Class[] types = new Class[]{
+            java.lang.String.class, java.lang.Integer.class,
+            java.lang.Integer.class};
+     
+     public ModeloTablaVenta(ArrayList list){
+            
+         this.datos = list;
+         }
+     
+     
     @Override
     public int getRowCount() {
         return datos.size();
@@ -20,7 +25,7 @@ public class ModeloTablaEliminarPedido extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return nombreCol.length;
+        return columnas.length;
     }
 
     @Override
@@ -31,12 +36,12 @@ public class ModeloTablaEliminarPedido extends AbstractTableModel {
     
     @Override
     public String getColumnName(int col){
-        return nombreCol[col];
+        return columnas[col];
     }
     
     @Override
     public Class getColumnClass(int col){
-        return type[col];
+        return types[col];
     }
     
     @Override
@@ -55,5 +60,14 @@ public class ModeloTablaEliminarPedido extends AbstractTableModel {
         datos.remove(fila);
         fireTableDataChanged();
     }
-   
+    
+    public boolean inCellEditable(int row, int col){
+        boolean editable;
+        if(col==columnas.length-1)
+            editable=true;
+        else
+            editable=false;
+
+        return editable;
+    }
 }

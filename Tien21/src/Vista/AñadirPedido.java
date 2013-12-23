@@ -1,12 +1,14 @@
 
 package Vista;
 
+import Modelo.ModeloTablaProductos;
 import Controlador.ListenerAñadirPedido;
 import Modelo.ProductoDB;
 import java.util.ArrayList;
 import javax.swing.JTable;
 
 public class AñadirPedido extends javax.swing.JDialog {
+    private int idProveedor;
 
     public AñadirPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -28,11 +30,12 @@ public class AñadirPedido extends javax.swing.JDialog {
         this.anadirAlPedido.addActionListener(new ListenerAñadirPedido(this.tablaAnadirPedido,this, id));
     }
 
-    public AñadirPedido(java.awt.Frame parent, boolean modal, Inicio inicio) {
+    public AñadirPedido(java.awt.Frame parent, boolean modal, Inicio inicio, int idProveedor) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);//coloca ventana en el centro
         
+        this.idProveedor=idProveedor;
         ModeloTablaProductos modeloTabla=new ModeloTablaProductos(new ArrayList ());
         this.tablaAnadirPedido.setModel(modeloTabla);
         
@@ -45,11 +48,11 @@ public class AñadirPedido extends javax.swing.JDialog {
     
     public void buscarElementoPedido(String tipo,String valor){
         if(tipo.equals("nombre")){
-            ArrayList<Object> listaBucar=new ProductoDB().buscarNombre(valor);
+            ArrayList<Object> listaBucar=new ProductoDB().buscarNombre(valor,idProveedor);
             ModeloTablaProductos modeloAlmacen=new ModeloTablaProductos(listaBucar);
             this.tablaAnadirPedido.setModel(modeloAlmacen);
         }else{
-            ArrayList<Object> listaBucar=new ProductoDB().buscarCodigo(valor);
+            ArrayList<Object> listaBucar=new ProductoDB().buscarCodigo(valor,idProveedor);
             ModeloTablaProductos modeloAlmacen=new ModeloTablaProductos(listaBucar);
             this.tablaAnadirPedido.setModel(modeloAlmacen);
         }

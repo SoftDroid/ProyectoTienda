@@ -5,7 +5,7 @@ import Modelo.ProductoDB;
 import Vista.AñadirProducto;
 import Vista.Buscar;
 import Vista.Inicio;
-import Vista.ModeloTablaProductos;
+import Modelo.ModeloTablaProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTable;

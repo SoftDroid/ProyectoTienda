@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import Vista.ModeloTablaProductos;
+import Modelo.ModeloTablaProductos;
 
 public class ListenerAñadirPedido implements ActionListener{
     private Inicio inicio;

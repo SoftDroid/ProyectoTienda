@@ -8,18 +8,19 @@ import Modelo.ProveedoresDB;
 import Modelo.UsuarioDB;
 import Vista.AñadirPedido;
 import Vista.Inicio;
-import Vista.ModeloListaProvedores;
-import Vista.ModeloTablaEliminarPedido;
+import Modelo.ModeloListaProvedores;
+import Modelo.ModeloTablaEliminarPedido;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTable;
-import Vista.ModeloTablaPedidos;
+import Modelo.ModeloTablaPedidos;
 import Vista.ModificarPedido;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 public class ListenerBotonesPedido implements ActionListener {
     private Inicio inicio;
@@ -31,6 +32,11 @@ public class ListenerBotonesPedido implements ActionListener {
     
     public ListenerBotonesPedido(Inicio aThis) {
         this.inicio=aThis;
+    }
+    
+    public ListenerBotonesPedido(Inicio aThis,JList lista) {
+        this.inicio=aThis;
+        this.lista=lista;
     }
     
     public ListenerBotonesPedido(Inicio aThis,JTable tabla) {
@@ -57,30 +63,40 @@ public class ListenerBotonesPedido implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
         switch (s){
-            case "añadirElementoPedido":      
-                AñadirPedido ventana=new AñadirPedido(null, true,inicio);
-                ventana.setVisible(true);
+            case "añadirElementoPedido": 
+                if(this.lista.getSelectedIndex()!=-1){
+                    String proveedor=(String) ((ModeloListaProvedores)lista.getModel()).getElementAt(lista.getSelectedIndex());
+                    int idProveedor= ProveedoresDB.getId(proveedor);
+                    AñadirPedido ventana=new AñadirPedido(null, true,inicio, idProveedor);
+                    ventana.setVisible(true);
+                }
                 break;
             case "borrarElementoPedido":  
                 if(this.tabla.getSelectedRow()!=-1){
-                ((ModeloTablaPedidos)this.tabla.getModel()).borrarFila(tabla.getSelectedRow());
-                inicio.calcularPrecioPedido(this.tabla);
+                    if(JOptionPane.showConfirmDialog(null,"¿Quieres borrar el elemento seleccionado?", "Confirma Borrar",  JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)==JOptionPane.OK_OPTION){
+                        ((ModeloTablaPedidos)this.tabla.getModel()).borrarFila(tabla.getSelectedRow());
+                        inicio.calcularPrecioPedido(this.tabla);
+                    }
                 }
                 break;
             case "realizarPedido":
                 if(this.lista.getSelectedIndex()!=-1){
-                this.crearPedido();
-                this.crearLineasPedido();
+                    this.crearPedido();
+                    this.crearLineasPedido();
                 }
                 break;
             case "limpiarPedido":
-                ModeloTablaPedidos modeloPedido=new ModeloTablaPedidos(new ArrayList());
-                this.tabla.setModel(modeloPedido);
+                if(JOptionPane.showConfirmDialog(null,"¿Quieres borrar todos los elementos del pedido?", "Confirma Limpiar",  JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)==JOptionPane.OK_OPTION){
+                    ModeloTablaPedidos modeloPedido=new ModeloTablaPedidos(new ArrayList());
+                    this.tabla.setModel(modeloPedido);
+                }
                 break;
             case "eliminarPedido":
                 if(this.tabla.getSelectedRow()!=-1){
-                PedidoDB.eliminarPedido((String) ((ModeloTablaEliminarPedido)this.tabla.getModel()).getValueAt(this.tabla.getSelectedRow(), 0));
-                ((ModeloTablaEliminarPedido)this.tabla.getModel()).borrarFila(this.tabla.getSelectedRow());
+                    if(JOptionPane.showConfirmDialog(null, "¿Quieres borrar permanentemente el pedido seleccionado?","Confirma Borrar",  JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)==JOptionPane.OK_OPTION){
+                        PedidoDB.eliminarPedido((String) ((ModeloTablaEliminarPedido)this.tabla.getModel()).getValueAt(this.tabla.getSelectedRow(), 0));
+                        ((ModeloTablaEliminarPedido)this.tabla.getModel()).borrarFila(this.tabla.getSelectedRow());
+                    }
                 }
                 break;
             case "modificacionPedido":

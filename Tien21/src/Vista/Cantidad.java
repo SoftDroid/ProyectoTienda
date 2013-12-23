@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Modelo.ModeloTablaPedidos;
 import Controlador.ListenerAñadirPedido;
 import Modelo.LineaPedidoDB;
 import Modelo.PedidoDB;

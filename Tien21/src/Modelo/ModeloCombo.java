@@ -1,5 +1,5 @@
 
-package Vista;
+package Modelo;
 
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;

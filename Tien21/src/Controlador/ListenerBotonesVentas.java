@@ -3,7 +3,7 @@ package Controlador;
 
 import Vista.ComparVenta;
 import Vista.Inicio;
-import Vista.ModeloTablaVenta;
+import Modelo.ModeloTablaVenta;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTable;

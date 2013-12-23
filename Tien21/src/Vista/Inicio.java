@@ -1,6 +1,11 @@
 
 package Vista;
 
+import Modelo.ModeloTablaProductos;
+import Modelo.ModeloTablaPedidos;
+import Modelo.ModeloTablaEliminarPedido;
+import Modelo.ModeloTablaVenta;
+import Modelo.ModeloListaProvedores;
 import Controlador.ListenerBotonesAlmacen;
 import Controlador.ListenerBotonesInicio;
 import Controlador.ListenerBotonesPedido;
@@ -18,6 +23,7 @@ import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
@@ -48,6 +54,8 @@ public class Inicio extends javax.swing.JFrame {
         
         ModeloTablaEliminarPedido modeloEliminarPedido=new ModeloTablaEliminarPedido(PedidoDB.mostrarPedidos());
         this.tablaMostrarPedido.setModel(modeloEliminarPedido);
+        marcarPedidosLlegados();
+        //this.tablaMostrarPedido.setDefaultRenderer(Boolean.class, null);
         
         ModeloTablaVenta modeloVenta = new ModeloTablaVenta(new ArrayList ());
         this.tablaVenta.setModel(modeloVenta);
@@ -66,7 +74,7 @@ public class Inicio extends javax.swing.JFrame {
         this.botonAnadirAlmacen.addActionListener(new ListenerBotonesAlmacen());
         this.botonBuscarAlmacen.addActionListener(new ListenerBotonesAlmacen(this));
         
-        this.botonAnadirElementoPedido.addActionListener(new ListenerBotonesPedido(this));
+        this.botonAnadirElementoPedido.addActionListener(new ListenerBotonesPedido(this,this.listaProvedores));
         this.botonBorrarElementoPedido.addActionListener(new ListenerBotonesPedido(this,this.tablaPedido));
         this.botonRealizarPedido.addActionListener(new ListenerBotonesPedido(this.tablaPedido,this.listaProvedores,this.precioPedido,this.user));
         this.botonLimpiarPedido.addActionListener(new ListenerBotonesPedido(this.tablaPedido));
@@ -314,9 +322,10 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel9.setText("Devolución");
 
-        jLabel10.setText("jLabel10");
+        jLabel10.setText("0");
+        jLabel10.setToolTipText("");
 
-        jLabel11.setText("jLabel11");
+        jLabel11.setText("0");
 
         realizarVenta.setText("Realizar Venta");
 
@@ -1089,5 +1098,10 @@ public class Inicio extends javax.swing.JFrame {
         
             new VentaDB().nuevoStock(nombre, cantRestante);
        }  
+    }
+
+    private void marcarPedidosLlegados() {
+        int cant=((ModeloTablaEliminarPedido)this.tablaMostrarPedido.getModel()).getRowCount();
+
     }
 }

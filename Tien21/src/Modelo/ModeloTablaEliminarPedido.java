@@ -1,17 +1,18 @@
 
-package Vista;
+package Modelo;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-public class ModeloTablaProductos extends AbstractTableModel {
+public class ModeloTablaEliminarPedido extends AbstractTableModel {
     ArrayList datos = new ArrayList();
-    String [] nombreCol= new String[] {"Codigo","Nombre","Precio Proveedor","Precio Venta","Temporada","Color","Talla","Familia","SubFamilia","Stock","Oferta","Descatalogado"};
-    Class [] type = new Class[]{java.lang.String.class,java.lang.String.class,java.lang.Double.class,java.lang.Double.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.Integer.class,java.lang.Integer.class,java.lang.Boolean.class};
+    String [] nombreCol= new String[] {"Codigo","Fecha","Precio"};
+    Class [] type = new Class[]{java.lang.String.class,java.lang.String.class,java.lang.String.class};
 
-    public ModeloTablaProductos(ArrayList list){
+     public ModeloTablaEliminarPedido(ArrayList list){
         this.datos=list;
     }
+
     @Override
     public int getRowCount() {
         return datos.size();
@@ -54,18 +55,5 @@ public class ModeloTablaProductos extends AbstractTableModel {
         datos.remove(fila);
         fireTableDataChanged();
     }
-    
-    public Object getFila(int fila){
-        return datos.get(fila);
-    }
-    
-    public boolean inCellEditable(int row, int col){
-        boolean editable;
-        if(col==nombreCol.length-1)
-            editable=true;
-        else
-            editable=false;
-
-        return editable;
-    }
+   
 }
