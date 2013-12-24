@@ -6,8 +6,8 @@ import javax.swing.table.AbstractTableModel;
 
 public class ModeloTablaEliminarPedido extends AbstractTableModel {
     ArrayList datos = new ArrayList();
-    String [] nombreCol= new String[] {"Codigo","Fecha","Precio"};
-    Class [] type = new Class[]{java.lang.String.class,java.lang.String.class,java.lang.String.class};
+    String [] nombreCol= new String[] {"Codigo","Precio","Fecha Realización","Entregado"};
+    Class [] type = new Class[]{java.lang.String.class,java.lang.String.class,java.lang.String.class, java.lang.Boolean.class};
 
      public ModeloTablaEliminarPedido(ArrayList list){
         this.datos=list;

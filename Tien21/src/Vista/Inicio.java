@@ -15,6 +15,7 @@ import Modelo.ProductoDB;
 import Modelo.ProveedoresDB;
 import Modelo.UsuarioDB;
 import Modelo.VentaDB;
+import Modelo.renderTabla;
 import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.BorderFactory;
@@ -22,7 +23,11 @@ import java.awt.Graphics;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.StringTokenizer;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -54,8 +59,8 @@ public class Inicio extends javax.swing.JFrame {
         
         ModeloTablaEliminarPedido modeloEliminarPedido=new ModeloTablaEliminarPedido(PedidoDB.mostrarPedidos());
         this.tablaMostrarPedido.setModel(modeloEliminarPedido);
-        marcarPedidosLlegados();
-        //this.tablaMostrarPedido.setDefaultRenderer(Boolean.class, null);
+        renderTabla miRender=new renderTabla();
+        this.tablaMostrarPedido.setDefaultRenderer(Boolean.class, miRender);
         
         ModeloTablaVenta modeloVenta = new ModeloTablaVenta(new ArrayList ());
         this.tablaVenta.setModel(modeloVenta);
@@ -534,6 +539,7 @@ public class Inicio extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Nuevo", jPanelNuevoPedido);
 
+        tablaMostrarPedido.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tablaMostrarPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -1098,10 +1104,5 @@ public class Inicio extends javax.swing.JFrame {
         
             new VentaDB().nuevoStock(nombre, cantRestante);
        }  
-    }
-
-    private void marcarPedidosLlegados() {
-        int cant=((ModeloTablaEliminarPedido)this.tablaMostrarPedido.getModel()).getRowCount();
-
     }
 }

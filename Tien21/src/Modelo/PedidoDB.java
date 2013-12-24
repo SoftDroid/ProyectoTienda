@@ -1,10 +1,15 @@
 
+
 package Modelo;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class PedidoDB {
@@ -58,10 +63,12 @@ public class PedidoDB {
             String sql="Select * from pedido";
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
-                Object[] linea = new Object[3];
+                Object[] linea = new Object[4];
                 linea[0]=rs.getString(2);
-                linea[1]=rs.getString(3);
-                linea[2]=rs.getString(4);
+                linea[2]=rs.getString(3);
+                linea[1]=rs.getString(4);
+                String fechaEntrega=rs.getString(6);
+                linea[3]=pedidosLlegados(fechaEntrega);
                 lista.add(linea);
             }
         }catch(Exception e){
@@ -135,5 +142,21 @@ public class PedidoDB {
             System.out.println("Error eliminar pedido "+ e);
         }
         return precio;
+    }
+
+    private static Object pedidosLlegados(String fechaEntrega) {
+        boolean pedidoEntregado=false;
+        DateFormat df=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            try {
+            Date fecha= df.parse(fechaEntrega);          
+            Date date = new Date();
+            if(date.compareTo(fecha)>0){
+                pedidoEntregado=true;
+            }
+ 
+        } catch (ParseException ex) {
+            
+        }
+        return pedidoEntregado;
     }
 }
