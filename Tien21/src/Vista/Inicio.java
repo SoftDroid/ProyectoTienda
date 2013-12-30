@@ -31,6 +31,7 @@ import java.util.Date;
 import java.util.StringTokenizer;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -39,15 +40,23 @@ import javax.swing.JTable;
 public class Inicio extends javax.swing.JFrame {
     private ArrayList listProductosAlmacen;
     private String user;
+    private JMenu menuColor=new JMenu();
+    private JMenu menuTalla=new JMenu();
+    private JMenu menuFamilia=new JMenu();
+    private JMenu menuSubFamilia=new JMenu();
+    private JMenu menuTemporada=new JMenu();
+    private JMenu menuProveedor=new JMenu();
+    private JMenu menuUsuario=new JMenu();
+    
     public Inicio() {
         initComponents();
+        llamarLogin();
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());//Para Maximizar la ventana
         this.jPanelMenu.setBorder(BorderFactory.createLineBorder(Color.black));
         this.jPanelVista.setBorder(BorderFactory.createLineBorder(Color.black));
         this.jPanelVista.setOpaque(false);
         jPanelPedido.setOpaque(false);
         inicializarMenuBar();//Inicializamos la barra de menu
-        llamarLogin();
         ocultarPaneles();// metodo para ocultar los paneles que no se deben ver al inicializar la aplicacion
         inicializarActionCommand();//metodo para añadir el ActionComand a los botones del menu y reconocer la llamada de cada boton en los listeners del controlador
 
@@ -111,7 +120,78 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         
+        this.menuColor.setText("Colores");
+        JMenuItem anadirColor=new JMenuItem("Añadir Color");
+        JMenuItem borrarColor=new JMenuItem("Borrar Color");
+        JMenuItem listarColor=new JMenuItem("Listar Colores");
+        this.menuColor.add(anadirColor);
+        this.menuColor.add(borrarColor);
+        this.menuColor.addSeparator();
+        this.menuColor.add(listarColor);
         
+        this.menuFamilia.setText("Familia");
+        JMenuItem anadirFamilia=new JMenuItem("Añadir Familia");
+        JMenuItem borrarFamilia=new JMenuItem("Borrar Familia");
+        JMenuItem listarFamilia=new JMenuItem("Listar Familias");
+        this.menuFamilia.add(anadirFamilia);
+        this.menuFamilia.add(borrarFamilia);
+        this.menuFamilia.addSeparator();
+        this.menuFamilia.add(listarFamilia);
+        
+        this.menuProveedor.setText("Proveedor");
+        JMenuItem anadirProveedor=new JMenuItem("Añadir Proveedor");
+        JMenuItem borrarProveedor=new JMenuItem("Borrar Proveedor");
+        JMenuItem listarProveedor=new JMenuItem("Listar Proveedores");
+        this.menuProveedor.add(anadirProveedor);
+        this.menuProveedor.add(borrarProveedor);
+        this.menuProveedor.addSeparator();
+        this.menuProveedor.add(listarProveedor);
+        
+        this.menuSubFamilia.setText("SubFamilia");
+        JMenuItem anadirSubFamilia=new JMenuItem("Añadir SubFamilia");
+        JMenuItem borrarSubFamilia=new JMenuItem("Borrar SubFamilia");
+        JMenuItem listarSubFamilia=new JMenuItem("Listar SubFamilias");
+        this.menuSubFamilia.add(anadirSubFamilia);
+        this.menuSubFamilia.add(borrarSubFamilia);
+        this.menuSubFamilia.addSeparator();
+        this.menuSubFamilia.add(listarSubFamilia);
+        
+        this.menuTalla.setText("Talla");
+        JMenuItem anadirTalla=new JMenuItem("Añadir Talla");
+        JMenuItem borrarTalla=new JMenuItem("Borrar Talla");
+        JMenuItem listarTalla=new JMenuItem("Listar Tallas");
+        this.menuTalla.add(anadirTalla);
+        this.menuTalla.add(borrarTalla);
+        this.menuTalla.addSeparator();
+        this.menuTalla.add(listarTalla);
+        
+        this.menuTemporada.setText("Temporada");
+        JMenuItem anadirTemporada=new JMenuItem("Añadir Temporada");
+        JMenuItem borrarTemporada=new JMenuItem("Borrar Temporada");
+        JMenuItem listarTemporada=new JMenuItem("Listar Temporadas");
+        this.menuTemporada.add(anadirTemporada);
+        this.menuTemporada.add(borrarTemporada);
+        this.menuTemporada.addSeparator();
+        this.menuTemporada.add(listarTemporada);
+        
+        this.menuUsuario.setText("Usuario");
+        JMenuItem anadirUsuario=new JMenuItem("Añadir Usuario");
+        JMenuItem borrarUsuario=new JMenuItem("Borrar Usuario");
+        JMenuItem listarUsuario=new JMenuItem("Listar Usuarios");
+        JMenuItem modificarContrasena=new JMenuItem("Cambiar contraseña");
+        this.menuUsuario.add(anadirUsuario);
+        this.menuUsuario.add(borrarUsuario);
+        this.menuUsuario.add(modificarContrasena);
+        this.menuUsuario.addSeparator();
+        this.menuUsuario.add(listarUsuario);  
+        
+        this.jMenuBar1.add(this.menuColor);
+        this.jMenuBar1.add(this.menuTalla);
+        this.jMenuBar1.add(this.menuTemporada);
+        this.jMenuBar1.add(this.menuProveedor);
+        this.jMenuBar1.add(this.menuFamilia);
+        this.jMenuBar1.add(this.menuSubFamilia);
+        this.jMenuBar1.add(this.menuUsuario);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
