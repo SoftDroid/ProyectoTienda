@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<toc version="1.0">
+   <tocitem text="Ejemplo JavaHelp" target="aplicacion">
+      <tocitem text="Ventana ventas" target="ventana_ventas"/>
+      <tocitem text="Ventana pedidos" target="ventana_pedidos"/>
+	  <tocitem text="Ventana almacen" target="ventana_almacen"/>
+   </tocitem>
+</toc>

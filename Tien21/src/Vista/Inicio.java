@@ -17,24 +17,23 @@ import Modelo.UsuarioDB;
 import Modelo.VentaDB;
 import Modelo.renderTabla;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.BorderFactory;
 import java.awt.Graphics;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.StringTokenizer;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 
 public class Inicio extends javax.swing.JFrame {
@@ -47,6 +46,8 @@ public class Inicio extends javax.swing.JFrame {
     private JMenu menuTemporada=new JMenu();
     private JMenu menuProveedor=new JMenu();
     private JMenu menuUsuario=new JMenu();
+    private JMenu menuAyuda=new JMenu();
+    private JMenuItem ayuda;
     
     public Inicio() {
         initComponents();
@@ -117,6 +118,15 @@ public class Inicio extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Inicio.this.setState( JFrame.ICONIFIED );
+            }
+        });
+        this.menuAyuda.setText("Ayuda");
+        ayuda= new JMenuItem("Ayuda");
+        this.menuAyuda.add(ayuda);
+        ayuda.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                init();
             }
         });
         
@@ -192,6 +202,7 @@ public class Inicio extends javax.swing.JFrame {
         this.jMenuBar1.add(this.menuFamilia);
         this.jMenuBar1.add(this.menuSubFamilia);
         this.jMenuBar1.add(this.menuUsuario);
+        this.jMenuBar1.add(this.menuAyuda);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -1184,5 +1195,24 @@ public class Inicio extends javax.swing.JFrame {
         
             new VentaDB().nuevoStock(nombre, cantRestante);
        }  
+    }
+
+    private void init() {
+        String hs_file ="javahelp/help_set.hs";
+        HelpSet helpSet;
+        HelpBroker helpBroker=null;
+        File file = new File("javahelp/help_set.hs");
+        ClassLoader cl=getClass().getClassLoader();
+        try{
+            URL url=file.toURI().toURL();
+            System.out.println(cl);
+            helpSet = new HelpSet(null,url);
+            helpBroker = helpSet.createHelpBroker();
+            helpBroker.setDisplayed(true);
+        }catch (Exception ex){
+            System.out.println(ex);
+        }
+        Dimension d= Toolkit.getDefaultToolkit().getScreenSize();
+        helpBroker.setSize(d);
     }
 }
