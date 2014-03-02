@@ -1198,14 +1198,11 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     private void init() {
-        String hs_file ="javahelp/help_set.hs";
         HelpSet helpSet;
         HelpBroker helpBroker=null;
         File file = new File("javahelp/help_set.hs");
-        ClassLoader cl=getClass().getClassLoader();
         try{
             URL url=file.toURI().toURL();
-            System.out.println(cl);
             helpSet = new HelpSet(null,url);
             helpBroker = helpSet.createHelpBroker();
             helpBroker.setDisplayed(true);
